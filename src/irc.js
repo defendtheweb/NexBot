@@ -339,4 +339,3 @@ function mysql_real_escape_string(str) {
     });
 }
 
-
