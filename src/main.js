@@ -13,24 +13,24 @@ var stream = fs.createWriteStream("main.log");
 /* SETUP LAST.FM */
 var LastFmNode = require('lastfm').LastFmNode;
 var lastfm = new LastFmNode({
-	api_key: '[last.fm API key]',
-	secret: '[last.fm secret]'
+	api_key: config.get('lastfm_key'),
+	secret: config.get('lastfm_secret')
 });
 
 var Bitly = require('bitly');
-var bitly = new Bitly('hackthisuk', '[bit.ly API key]');
+var bitly = new Bitly(config.get('bitly_user'), config.get('bitly_key'));
 
 var Groove = require('./groove.js');
-var groove = new Groove('[grooveshark API key]');
+var groove = new Groove(config.get('groove'));
 
 irc.nick = Array();
 
 /* Connect to MySQL */
 var _mysql = require('mysql');
-var MYSQL_HOST = 'localhost';
-var MYSQL_USER = '[username]';
-var MYSQL_PASS = '[password]';
-var DATABASE = '[database]';
+var MYSQL_HOST = config.get('mysql_host');
+var MYSQL_USER = config.get('mysql_user');
+var MYSQL_PASS = config.get('mysql_pass');
+var DATABASE = config.get('mysql_db');
 
 var mysql = _mysql.createClient({
     user: MYSQL_USER,
@@ -42,7 +42,7 @@ var mysql = _mysql.createClient({
 
 /* Setup IRC */
 irc.connect = function(channels) {
-	irc.client = new _irc.Client(config.get('server'), 'NexBot', {
+	irc.client = new _irc.Client(config.get('server'), config.get('nick'), {
 		channels: channels,
 	});
 
