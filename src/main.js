@@ -172,7 +172,7 @@ irc.connect = function(channels) {
       			 try {
 					re = new RegExp(matches[1], "ig");
 					message = msg.replace(re, matches[2]);
-					irc.client.say(chan, from + " meant: " + message);
+					irc.client.say(chan, message);
 		
 					message = msg;
        			 } catch(e) { console.log(e) }
