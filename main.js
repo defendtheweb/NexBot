@@ -1,10 +1,11 @@
 var _irc = require('irc');
 var irc = {};
 
-var config = require('./config.js');
+var Loader = require('./loader.js');
+var config = new Loader();
 config.load('data/config.js');
 
-var nicks = require('./nicks.js');
+var nicks = new Loader();
 nicks.load('data/nicks.js');
 
 var fs = require('fs');
