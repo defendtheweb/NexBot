@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `raw_logs` (
   `time` int(10) NOT NULL,
   `removed` int(1) NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=285597 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
 
 
 
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `remember` (
   `nick` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `message` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`r_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=82 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
 
 
 
