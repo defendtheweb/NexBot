@@ -16,7 +16,7 @@ Issues.prototype = {
 						// Count number of issues
 						var count = obj.length;
 						// Return the string.
-						irc.client.say(chan, "NexBot has " + count + " open issue" + (count==1?'':'s'));
+						irc.client.say(chan, "NexBot has " + count + " open issue" + (count==1?'':'s') + " [http://git.io/hjkhrA]");
 					});
 				});
 				req.end();
