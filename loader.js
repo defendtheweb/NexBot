@@ -27,7 +27,7 @@ Loader.prototype = {
 		    if(err) {
 			    console.log(err);
 			} else {
-			    console.log("File updated: " + this.file);
+			    console.log("File updated");
 			}
 		});
 	}
