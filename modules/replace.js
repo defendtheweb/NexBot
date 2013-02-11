@@ -11,7 +11,7 @@ Replace.prototype = {
 		if (!this.msgs[from])
 			this.msgs[from] = Array();
 
-		if (matches = message.match(/^s\/(.+)\/(.+)\/(.+)$/i)) {
+		if (matches = message.match(/^s\/(.+)\/(.*)\/(.+)$/i)) {
 			var target = matches[3];
 			if (this.msgs[target] && this.msgs[target][chan]) {
 				msg = this.msgs[target][chan];
@@ -23,7 +23,7 @@ Replace.prototype = {
 					message = msg;
 				} catch(e) { console.log(e) }
 			}
-		} else if (matches = message.match(/^s\/(.+)\/(.+)$/i)) {
+		} else if (matches = message.match(/^s\/(.+)\/(.*)$/i)) {
 			if (msg = this.msgs[from][chan]) {
       			 try {
 					re = new RegExp(matches[1], "ig");
