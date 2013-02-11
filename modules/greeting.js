@@ -6,7 +6,7 @@ Greeting.prototype = {
 	greeting: global.config.get("greeting"),
 	join: function(chan, nick, message) {
 		if (this.greeting instanceof Array) {
-			greet = this.greeting[Math.round(Math.random()*this.greeting.length)];
+			greet = this.greeting[Math.floor(Math.random()*this.greeting.length)];
 		} else {
 			greet = this.greeting;
 		}
