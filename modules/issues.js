@@ -9,12 +9,14 @@ Issues.prototype = {
 
 		if (matches = message.match(/^!([\S]*)$/i)) {
 			if (matches[1] == "issues") {
-				var req = this.https.request('https://api.github.com/repos/HackThis/NexBot', function(res) {
+				var req = this.https.request('https://api.github.com/repos/HackThis/NexBot/issues', function(res) {
 					res.on('data', function(d) {
 						// Get the result and turn it into a JSON object.
 						var obj = JSON.parse(d);
+						// Count number of issues
+						var count = obj.length;
 						// Return the string.
-						irc.client.say(chan, "NexBot has " + obj.open_issues_count + " open issues");
+						irc.client.say(chan, "NexBot has " + count + " open issue" + (count==1?'':'s') + " [http://git.io/hjkhrA]");
 					});
 				});
 				req.end();
