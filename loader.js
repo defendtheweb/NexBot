@@ -27,7 +27,7 @@ Loader.prototype = {
 		    if(err) {
 			    console.log(err);
 			} else {
-			    console.log("Config file saved");
+			    console.log("File updated: " + this.file);
 			}
 		});
 	}
