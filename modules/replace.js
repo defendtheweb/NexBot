@@ -1,43 +1,36 @@
-var Replace = function() {
-	//Constructor
-}
+var Replace = function() { //Constructor
+	
+	// Private storage of last entered message per user
+	// and channel
+	var latestMsgs = [[]];
 
-Replace.prototype = {
-	msgs: [[]],
-	handle: function(from, chan, message) {
-		var irc = global.irc;
-
-		//check there is an array for this user
-		if (!this.msgs[from])
-			this.msgs[from] = Array();
-
-		if (matches = message.match(/^s\/(.+)\/(.*)\/(.+)$/i)) {
-			var target = matches[3];
-			if (this.msgs[target] && this.msgs[target][chan]) {
-				msg = this.msgs[target][chan];
-				try {
-					re = new RegExp(matches[1], "ig");
-					message = msg.replace(re, matches[2]);
-					irc.client.say(chan, message);
-
-					message = msg;
-				} catch(e) { console.log(e) }
-			}
-		} else if (matches = message.match(/^s\/(.+)\/(.*)$/i)) {
-			if (msg = this.msgs[from][chan]) {
-      			 try {
-					re = new RegExp(matches[1], "ig");
-					message = msg.replace(re, matches[2]);
-					irc.client.say(chan, message);
+	// handle is called when a message is sent to a channel by a user
+	this.handle = function(from, chan, message) {
+		var irc = global.irc,
+			matches = message.match(/^s\/(.*?)\/(.*?)(\/(.+))?$/i);
 		
-					message = msg;
-       			 } catch(e) { console.log(e) }
+		if (matches) {
+			var search = matches[1],
+				replace = matches[2],
+				user = matches[4] || from;
+
+			if (latestMsgs[user] && latestMsgs[user][chan]) {
+				message = latestMsgs[user][chan];
+				try {
+					var re = new RegExp(search, "ig"),
+						msg = message.replace(re, replace);
+					irc.client.say(chan, msg);
+				} catch(e) {
+					console.log('replace error: ' + e)
+				}
 			}
 		}
-
-		//store in user array
-		this.msgs[from][chan] = message;
+			
+		// Store in user array. If message was used for replace it is 
+		// overwritten to make sure we are not replacing on replace strings.
+		if(!latestMsgs[from]) latestMsgs[from] = Array();
+		latestMsgs[from][chan] = message;
 	}
-};
+}
 
 module.exports = new Replace();
