@@ -40,16 +40,20 @@ irc.connect = function(channels) {
 	});
 
 	/* Setup listeners */
-	irc.client.addListener('message', function (from, chan, message) {
-		message.replace(/(^\s*)|(\s*$)/g, ' ');
+	for (c in channels) {
+		channel = channels[c];
+		irc.client.addListener('message'+channel, function (from, message) {
+			chan = channel;
+			message.replace(/(^\s*)|(\s*$)/g, ' ');
 
-		//pass on to modules
-		for (i in modules) {
-			if (typeof modules[i].handle === 'function') {
-				modules[i].handle(from, chan, message);
+			//pass on to modules
+			for (i in modules) {
+				if (typeof modules[i].handle === 'function') {
+					modules[i].handle(from, chan, message);
+				}
 			}
-		}
-	});
+		});
+	}
 	
 	irc.client.addListener('join', function (chan, nick, message) {
 		//pass on to modules
