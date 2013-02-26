@@ -67,6 +67,37 @@ DB.prototype = {
 				console.log("MySQL Error [2]: " + error);
 			}
 		});
+	},
+
+	handlePM: function(from, message) {
+		time = Math.round(new Date().getTime() / 1000);
+
+		user = this.connection.escape(from);
+		chan = this.connection.escape(chan);
+		message = this.connection.escape(message);
+
+		sql = "INSERT INTO raw_logs (`action`, `user`, `log`, `time`) VALUES ('2', "+user+", "+message+", '"+time+"')";
+
+		this.connection.query(sql, function (error) {
+			if (error) {
+				console.log("MySQL Error [3]: " + error);
+			}
+		});
+	},
+
+	join: function(chan, from, message) {
+		time = Math.round(new Date().getTime() / 1000);
+
+		user = this.connection.escape(from);
+		chan = this.connection.escape(chan);
+
+		sql = "INSERT INTO raw_logs (`action`, `user`, `channel`, `time`) VALUES ('3', "+user+", "+chan+", '"+time+"')";
+
+		this.connection.query(sql, function (error) {
+			if (error) {
+				console.log("MySQL Error [4]: " + error);
+			}
+		});
 	}
 };
 
