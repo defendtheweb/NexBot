@@ -33,6 +33,8 @@ irc.nick = Array();
 irc.connect = function(channels) {
 	irc.client = new _irc.Client(config.get('server'), config.get('nick'), {
 		channels: channels,
+		userName: config.get('nick'),
+		realName: config.get('nick')
 	});
 
 	irc.client.addListener('error', function(error) {
