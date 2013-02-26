@@ -7,18 +7,18 @@ var Replace = function() { //Constructor
 	// handle is called when a message is sent to a channel by a user
 	this.handle = function(from, chan, message) {
 		var irc = global.irc,
-			matches = message.match(/^s\/(.*?)\/(.*?)(\/(.+))?$/i);
+		matches = message.match(/^s\/(.*?)\/(.*?)(\/(.+))?$/i);
 		
 		if (matches) {
 			var search = matches[1],
-				replace = matches[2],
-				user = matches[4] || from;
+			replace = matches[2],
+			user = matches[4] || from;
 
 			if (latestMsgs[user] && latestMsgs[user][chan]) {
 				message = latestMsgs[user][chan];
 				try {
 					var re = new RegExp(search, "ig"),
-						msg = message.replace(re, replace);
+					msg = message.replace(re, replace);
 					irc.client.say(chan, msg);
 				} catch(e) {
 					console.log('replace error: ' + e)
