@@ -8,9 +8,11 @@ Profile.prototype = {
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 
-		if (matches = message.match(/^!([\S]*) (.*)$/i)) {
+		if (matches = message.match(/^!([\S]*) ((.*))?$/i)) {
 			if (matches[1] == "profile") {
-				var req = this.https.request('https://api.hackthis.co.uk/?api_key='+this.api_key+'&method=user.getInfo&user='+matches[2], function(res) {
+				user = matches[2] || from;
+
+				var req = this.https.request('https://api.hackthis.co.uk/?api_key='+this.api_key+'&method=user.getInfo&user='+user, function(res) {
 					res.on('data', function(d) {
 						// Get the result and turn it into a JSON object.
 						var obj = JSON.parse(d);
