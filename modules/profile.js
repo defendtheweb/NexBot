@@ -10,7 +10,8 @@ Profile.prototype = {
 
 		if (matches = message.match(/^!([\S]*)( (.*))?$/i)) {
 			if (matches[1] == "profile") {
-				user = matches[2].trim() || from;
+				user = matches[2] || from;
+				user = user.trim();
 
 				var req = this.https.request('https://api.hackthis.co.uk/?api_key='+this.api_key+'&method=user.getInfo&user='+user, function(res) {
 					res.on('data', function(d) {
