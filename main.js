@@ -33,6 +33,8 @@ irc.nick = Array();
 irc.connect = function(channels) {
 	irc.client = new _irc.Client(config.get('server'), config.get('nick'), {
 		channels: channels,
+		userName: config.get('nick'),
+		realName: config.get('nick')
 	});
 
 	irc.client.addListener('error', function(error) {
@@ -40,20 +42,19 @@ irc.connect = function(channels) {
 	});
 
 	/* Setup listeners */
-	for (c in channels) {
-		channel = channels[c];
-		irc.client.addListener('message'+channel, function (from, message) {
-			chan = channel;
-			message.replace(/(^\s*)|(\s*$)/g, ' ');
+	irc.client.addListener('message', function (from, chan, message) {
+		if (chan == config.get('nick'))
+			return;
 
-			//pass on to modules
-			for (i in modules) {
-				if (typeof modules[i].handle === 'function') {
-					modules[i].handle(from, chan, message);
-				}
+		message.replace(/(^\s*)|(\s*$)/g, ' ');
+
+		//pass on to modules
+		for (i in modules) {
+			if (typeof modules[i].handle === 'function') {
+				modules[i].handle(from, chan, message);
 			}
-		});
-	}
+		}
+	});
 	
 	irc.client.addListener('join', function (chan, nick, message) {
 		//pass on to modules
