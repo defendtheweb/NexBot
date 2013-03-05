@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Nexbot by HackThis</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/HackThis/NexBot">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/HackThis/NexBot/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/HackThis/NexBot/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Nexbot</h1>
+          <p>Node.js IRC bot</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/HackThis">HackThis</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>NexBot</h1>
+
+<p>Node.js IRC bot</p>
+
+<h2>Install and Setup</h2>
+
+<ol>
+<li>
+<p>Install Node.JS</p>
+
+<div class="highlight"><pre>git clone https://github.com/joyent/node
+<span class="nb">cd </span>node
+./configure
+make
+make install
+</pre></div>
+</li>
+<li>
+<p>Install the required packages for NexBot</p>
+
+<div class="highlight"><pre>npm install mysql irc lastfm bitly
+</pre></div>
+</li>
+<li>
+<p>Setup the database.</p>
+
+<div class="highlight"><pre>mysql -u &lt;user&gt; -p &lt;database&gt; &lt; db.sql
+</pre></div>
+</li>
+<li><p>Edit the data/config.js file to match your details.</p></li>
+</ol><h2>Usage</h2>
+
+<p>Start the bot by running <code>node main.js</code>. 
+Once the bot is running you can use the following commands:</p>
+
+<ul>
+<li>!last.fm - Output the last listened track from last.fm</li>
+<li>!last.fm &lt;user&gt; - Will get the last track listened to by the user"</li>
+<li>!groove - Output the last listened track from last.fm in the form of a grooveshark URL.</li>
+<li>!groove &lt;song&gt; - Will get the first result from Grooveshark which matches</li>
+<li><del>!remember foo | !save foo | !note foo - Will add "foo" to the database</del></li>
+<li>s/foo/bar - Last line you wrote will replace "foo" with "bar"</li>
+<li>s/foo/bar/user - Last line written by "user" will replace "foo" with "bar"</li>
+</ul><h3>Private messaging the bot</h3>
+
+<ul>
+<li><del>!remember | !save | !note - Output all records.</del></li>
+<li>set last.fm &lt;user&gt; - Will map the IRC nick to the Last.fm user "foo"</li>
+</ul><h2>Packages</h2>
+
+<ul>
+<li>node-irc <a href="https://github.com/martynsmith/node-irc">https://github.com/martynsmith/node-irc</a>
+</li>
+<li>lastfm-node <a href="https://github.com/jammus/lastfm-node">https://github.com/jammus/lastfm-node</a>
+</li>
+<li>node-bitly <a href="https://github.com/tanepiper/node-bitly">https://github.com/tanepiper/node-bitly</a>
+</li>
+</ul><p>Install them via npm using:</p>
+
+<div class="highlight"><pre>npm install mysql irc lastfm bitly 
+</pre></div>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
