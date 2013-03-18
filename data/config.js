@@ -18,6 +18,6 @@
 
 	"greeting": ["Konnichiwa", "Welcome"],
 
-	"modules": ["lastfm", "replace", "grooveshark", "issues", "greeting"],
+	"modules": ["lastfm", "replace", "grooveshark", "issues", "greeting", "searchLink"],
 	"admin": ["admin"]
 }
