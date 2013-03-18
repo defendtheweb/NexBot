@@ -17,7 +17,7 @@ var SearchLink = function() { //Constructor
 			'url': 'http://google.com/search?q=%query%'
 		},
 		{
-			'trigger': 'srcht',
+			'trigger': 'ht',
 			'url': 'http://www.hackthis.co.uk/search.php?q=%query%'
 		},
 		{
