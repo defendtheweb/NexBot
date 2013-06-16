@@ -1,0 +1,37 @@
+{
+  "name": "NexBot",
+  "description": "Node.js IRC bot",
+  "version": "0.0.0",
+  "homepage": "https://github.com/HackThis/NexBot",
+  "keywords": [
+    "IRC",
+    "Bot"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hackthis/NexBot.git"
+  },
+  "author": {
+    "name": "Hack This",
+    "email": "nexbot@hackthis.co.uk",
+    "url": "http://hackthis.github.io/NexBot"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/HackThis/NexBot/blob/master/LICENSE.md"
+    }
+  ],
+  "main": "main.js",
+  "engines": {
+    "node": ">= 0.6.x"
+  },
+  "Dependencies": {
+	"mysql": ">0",
+	"irc": ">0", 
+	"lastfm": ">0",
+	"bitly": ">0"
+  },
+  "readme": "", 
+  "readmeFilename": "README.md"
+}
