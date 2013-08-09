@@ -10,9 +10,10 @@ Greeting.prototype = {
 		} else {
 			greet = this.greeting;
 		}
-
+		
 		if (nick != global.config.get("nick"))
-			irc.client.say(chan, greet + " " + nick);
+			if (global.config.get("greeting-ignore").indexOf(nick) < 0)
+				irc.client.say(chan, greet + " " + nick);
 	}
 };
 

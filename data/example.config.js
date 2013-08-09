@@ -17,6 +17,7 @@
 	"mysql_db": "database",
 
 	"greeting": ["Konnichiwa", "Welcome"],
+	"greeting-ignore": ["GitBot"],
 
 	"modules": ["lastfm", "replace", "grooveshark", "issues", "greeting", "searchLink"],
 	"admin": ["admin"]
