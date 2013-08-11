@@ -48,12 +48,6 @@ irc.connect = function(channels) {
 		console.log("ERROR: " + error.command);
 	});
 
-	/* DEBUG raw messages */
-	// irc.client.addListener('raw', function(message){
-	// 	if(message.commandType == 'reply')
-	// 		console.log(message);
-	// });
-
 	/* Setup listeners */
 	irc.client.addListener('message', function (from, chan, message) {
 		if (chan == config.get('nick'))
