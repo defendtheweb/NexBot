@@ -34,7 +34,14 @@ irc.connect = function(channels) {
 	irc.client = new _irc.Client(config.get('server'), config.get('nick'), {
 		channels: channels,
 		userName: config.get('nick'),
-		realName: config.get('nick')
+		realName: config.get('nick'),
+		port: config.get('port'),
+
+		secure: config.get('secure'),
+		certExpired: config.get('certExpired'),
+		selfSigned: config.get('selfSigned'),
+
+		debug: config.get('debug')
 	});
 
 	irc.client.addListener('error', function(error) {
