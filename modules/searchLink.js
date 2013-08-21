@@ -13,16 +13,20 @@ var SearchLink = function() { //Constructor
 	 */
 	var searchEngines = [
 		{
-			'trigger': ['search', 'google'],
-			'url': 'http://google.com/search?q=%query%'
+			'trigger': ['google'],
+			'url': 'https://google.com/search?q=%query%'
 		},
 		{
 			'trigger': 'ht',
-			'url': 'http://www.hackthis.co.uk/search.php?q=%query%'
+			'url': 'https://www.hackthis.co.uk/search.php?q=%query%'
 		},
 		{
 			'trigger': 'lmgtfy',
 			'url': 'http://lmgtfy.com/?q=%query%'
+		},
+		{
+			'trigger': ['search', 'ddg', 'DDG', 'duck'],
+			'url': 'https://duckduckgo.com/?q=%query%'
 		}
 	];
 
