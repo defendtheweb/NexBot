@@ -54,3 +54,7 @@ Install them via npm using:
 ```bash
 npm install mysql irc lastfm bitly 
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/HackThis/nexbot/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
