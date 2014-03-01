@@ -7,5 +7,6 @@
 	"hellodog":"http://goo.gl/JFnxD",
 	"whatbutton":"http://goo.gl/Q8B3y",
 	"notime":"http://goo.gl/exuKV",
-	"pigeon":"http://i.imgur.com/iOBmtNk.gif"
+	"pigeon":"http://i.imgur.com/iOBmtNk.gif",
+	"hello":"http://i.imgur.com/6YbAxG8.gif"
 }
