@@ -109,3 +109,8 @@ irc.connect = function(channels) {
 }
 
 irc.connect(config.get('channels'));
+
+// Global catch on unexpected exception so the server keep running.
+process.on('uncaughtException', function(err) {
+  console.log('\033[31m[Caught exception]\033[0m: ' + err);
+});
