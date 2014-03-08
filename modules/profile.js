@@ -15,9 +15,13 @@ Profile.prototype = {
 
 				var req = this.https.request('https://api.hackthis.co.uk/?api_key='+this.api_key+'&method=user.getInfo&user='+user, function(res) {
 					res.on('data', function(d) {
+						var obj = {};
 						// Get the result and turn it into a JSON object.
-						var obj = JSON.parse(d);
-
+						try {
+							obj = JSON.parse(d);
+						} catch (e) {
+							console.log("\033[33m[HackThis API]\033[0m " + e);
+						}
 						if (obj.data) {
 							// Return the string.
 							var result = obj.data.user + " | Score: " + obj.data.score + " | Posts: " + obj.data.posts + " | Consecutive: " + obj.data.consecutive;
