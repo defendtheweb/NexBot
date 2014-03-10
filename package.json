@@ -22,15 +22,15 @@
       "url": "https://github.com/HackThis/NexBot/blob/master/LICENSE.md"
     }
   ],
-  "main": "main.js",
+  "main": "main",
   "engines": {
-    "node": ">= 0.6.x"
+    "node": ">=0.6"
   },
-  "Dependencies": {
-	"mysql": ">0",
-	"irc": ">0", 
-	"lastfm": ">0",
-	"bitly": ">0"
+  "dependencies": {
+	"mysql": "2.1.x",
+	"irc": "0.3.x", 
+	"lastfm": "0.9.x",
+	"bitly": "1.2.x"
   },
   "readme": "", 
   "readmeFilename": "README.md"
