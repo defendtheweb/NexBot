@@ -16,6 +16,8 @@
 
 	"bitly_user":"username",
 	"bitly_key":"api_key",
+	
+	"wordnik_api": "api_key",
 
 	"mysql_db":"localhost",
 	"mysql_user":"username",
