@@ -5,7 +5,7 @@ Node.js IRC bot
 
 ## Install and Setup
 
-1. Install Node.JS
+### 1 Install Node.JS
 ```bash
 git clone https://github.com/joyent/node
 cd node
@@ -14,18 +14,21 @@ make
 make install
 ```
 
-2. Install the required packages for NexBot
+### 2 Install Dependencies
+1. Go to the root folder and install the required packages for NexBot
 ```bash
-npm install mysql irc lastfm bitly
+npm install
 ```
 
-3. Setup the database.
+### 3 Setup the database
 ```bash
 mysql -u <user> -p <database> < db.sql
 ```
 
-4. Edit the data/config.js file to match your details.
+### 4 Edit configuration files
+1. Edit the data/example.config.js file to match your details and rename it to config.js.
 
+2. Rename the data/example.nicks.js file to nicks.js.
 
 ## Usage
 
