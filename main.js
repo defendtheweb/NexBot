@@ -106,6 +106,13 @@ irc.connect = function(channels) {
 			}
 		}
 	});
+	
+	irc.client.once('registered', function(){
+		var moduleName;
+		for (moduleName in modules)
+			if (typeof (modules[moduleName].init) === 'function')
+				modules[moduleName].init();
+	});
 }
 
 irc.connect(config.get('channels'));
