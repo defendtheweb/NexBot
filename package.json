@@ -26,6 +26,13 @@
   "engines": {
     "node": ">=0.6"
   },
+  "scripts" : {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-jshint": "0.9.x"
+  },
   "dependencies": {
 	"mysql": "2.1.x",
 	"irc": "0.3.x", 
