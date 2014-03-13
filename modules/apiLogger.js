@@ -22,8 +22,8 @@ ApiLogger.prototype = {
             path: '/?key='+key+'&api&action=irc.log',
             method: 'POST',
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Content-Length': post_data.length
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': post_data.length
             }
         };
 
