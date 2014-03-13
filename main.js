@@ -19,15 +19,15 @@ var modules = [];
 global.modules = modules;
 
 //create modules and add to array of loaded modules
-for (i in tmpModules) {
-	moduleName = tmpModules[i];
-	tmp = require('./modules/' + moduleName + '.js');
+for (var i in tmpModules) {
+	var moduleName = tmpModules[i];
+	var tmp = require('./modules/' + moduleName + '.js');
 	modules[moduleName] = tmp;
 	console.log("\033[32m[Module] \033[0m" + moduleName + " loaded");
 }
 
 
-irc.nick = Array();
+irc.nick = [];
 
 /* Setup IRC */
 irc.connect = function(channels) {
@@ -50,13 +50,14 @@ irc.connect = function(channels) {
 
 	/* Setup listeners */
 	irc.client.addListener('message', function (from, chan, message) {
-		if (chan == config.get('nick'))
+		if (chan === config.get('nick')) {
 			return;
+		}
 
 		message.replace(/(^\s*)|(\s*$)/g, ' ');
 
 		//pass on to modules
-		for (i in modules) {
+		for (var i in modules) {
 			if (typeof modules[i].handle === 'function') {
 				modules[i].handle(from, chan, message);
 			}
@@ -65,7 +66,7 @@ irc.connect = function(channels) {
 	
 	irc.client.addListener('join', function (chan, nick, message) {
 		//pass on to modules
-		for (i in modules) {
+		for (var i in modules) {
 			if (typeof modules[i].join === 'function') {
 				modules[i].join(chan, nick, message);
 			}
@@ -74,7 +75,7 @@ irc.connect = function(channels) {
 
 	/* PRIVATE */
 	irc.client.addListener('pm', function (from, message) {
-		for (i in modules) {
+		for (var i in modules) {
 			if (typeof modules[i].handlePM === 'function') {
 				modules[i].handlePM(from, message);
 			}
@@ -83,8 +84,9 @@ irc.connect = function(channels) {
 		//check if user is authenticated
 		if (config.get('admin').indexOf(from) >= 0) {
 			/* 2 part */
+			var matches;
 			if (matches = message.match(/^([\S]*) (.*)$/i)) {
-				if (matches[1] == "load") {
+				if (matches[1] === "load") {
 
 					var moduleName = matches[2];
 					var modulePath = './modules/' + moduleName + '.js';
@@ -106,6 +108,6 @@ irc.connect = function(channels) {
 			}
 		}
 	});
-}
+};
 
 irc.connect(config.get('channels'));

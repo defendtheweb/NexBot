@@ -9,15 +9,16 @@ var Grooveshark = function() {
 	if (!global.modules['lastfm']) {
 		console.log("\033[31m[Grooveshark] \033[0mlastfm module required for some features");
 	}
-}
+};
 
 Grooveshark.prototype = {
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 		var api = this.api;
 
+		var matches;
 		if (matches = message.match(/^!([\S]*) (.*)$/i)) {
-			if (matches[1] == "groove") {
+			if (matches[1] === "groove") {
 				this.api.shorten(matches[2], function(err, response) {
 					if (err) {
 						irc.client.say(from, "Groove error!");
@@ -30,7 +31,7 @@ Grooveshark.prototype = {
 				});
 			}
 		} else if (matches = message.match(/^!([\S]*)$/i)) {
-			if (matches[1] == "groove") {
+			if (matches[1] === "groove") {
 				if (global.nicks.data[from] && global.nicks.data[from]['lastfm']) {
 					//Requires lastfm module to be loaded
 					if (global.modules['lastfm']) {
@@ -39,8 +40,9 @@ Grooveshark.prototype = {
 							handlers: {
 								success: function(data) {
 									api.shorten(data.recenttracks.track[0].artist['#text'] + ' ' + data.recenttracks.track[0].name, function(err, response) {
-										if (err)
+										if (err) {
 											irc.client.say(from, "Groove error!");
+										}
 
 										var url = response.Url;
 										var artist = response.ArtistName;
@@ -54,8 +56,9 @@ Grooveshark.prototype = {
 							}
 						});
 					}
-				} else
+				} else {
 					irc.client.say(from, "Please set your last.fm username, type: set last.fm <username>");
+				}
 			}
 		}
 	}

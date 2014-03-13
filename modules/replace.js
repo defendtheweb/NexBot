@@ -21,16 +21,18 @@ var Replace = function() { //Constructor
 					msg = message.replace(re, replace);
 					irc.client.say(chan, msg);
 				} catch(e) {
-					console.log('replace error: ' + e)
+					console.log('replace error: ' + e);
 				}
 			}
 		}
 			
 		// Store in user array. If message was used for replace it is 
 		// overwritten to make sure we are not replacing on replace strings.
-		if(!latestMsgs[from]) latestMsgs[from] = Array();
+		if(!latestMsgs[from]) {
+			latestMsgs[from] = [];
+		}
 		latestMsgs[from][chan] = message;
-	}
-}
+	};
+};
 
 module.exports = new Replace();

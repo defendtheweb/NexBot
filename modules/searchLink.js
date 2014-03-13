@@ -1,3 +1,5 @@
+/* global escape: false */
+
 var SearchLink = function() { //Constructor
 
 	/* list of available search engines, each item is a map

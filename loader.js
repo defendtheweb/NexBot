@@ -1,5 +1,5 @@
 var fs = require('fs');
-var Loader = function() { }
+var Loader = function() {};
 
 Loader.prototype = {
 	file: undefined,
@@ -20,14 +20,16 @@ Loader.prototype = {
 	},
 
 	save: function() {
-		if (!this.file) console.log("Error, no file set");
-		
+		if (!this.file) {
+			console.log("Error, no file set");
+		}
+
 		var config_tmp = JSON.stringify(this.data);
 		fs.writeFile(this.file, config_tmp, function(err) {
-		    if(err) {
-			    console.log(err);
+			if (err) {
+				console.log(err);
 			} else {
-			    console.log("File updated");
+				console.log("File updated");
 			}
 		});
 	}

@@ -6,7 +6,7 @@
     this.deadMsg = 'You\'re dead to me.';
     this.chanOnKillMsg = '{user} has been slain !';
     this.chanOnRaiseMsg = '{user} has been raised !';
-}
+};
 
 var ExtIrcClientKick = function(chan, who, why){
     this.send('KICK', chan, who, why);
@@ -27,12 +27,13 @@ Kill.prototype = {
 
 			irc.client.kick = ExtIrcClientKick;
 			irc.client.addListener('join', function(chan, who){
-				if (killList.indexOf(who) >= 0)
+				if (killList.indexOf(who) >= 0) {
 					irc.client.kick(chan, who, deadMsg);
+                }
 			});
 
             irc.client.addListener('kick', function(chan, nick, by, reason, message){
-                if (by == global.config.get('nick') && reason == triggerMsg)
+                if (by === global.config.get('nick') && reason === triggerMsg)
                 {
                     killList.push(nick);
                     irc.client.say(chan, chanOnKillMsg.replace('{user}', nick));
@@ -42,12 +43,17 @@ Kill.prototype = {
 		}
 
 		//check if user is authenticated
-		if (config.get('admin').indexOf(from) >= 0) {
+		if (global.config.get('admin').indexOf(from) >= 0) {
 			/* 2 part */
+            var matches;
 			if (matches = message.trimRight().match(/^!([\S]*) (.*)$/i)) {
-				if (matches[1] == 'kill') {
+				if (matches[1] === 'kill') {
 					var userId = this.killList.indexOf(matches[2]);
-					(userId >= 0) ? this.raiseUser(userId, chan) : this.killUser(matches[2], chan);
+                    if (userId >= 0) {
+                        this.raiseUser(userId, chan);
+                    } else {
+                        this.killUser(matches[2], chan);
+                    }
 				}
 			}
 		}
