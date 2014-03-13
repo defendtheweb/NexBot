@@ -1,31 +1,36 @@
 var Shout = function() {
 	var Loader = require('../loader.js');
 	this.shouts = new Loader();
-	this.shouts.load('data/shouts.js');
+	this.shouts.load('data/shouts.json');
 	this.shouts = this.shouts.data;
+	this.prefixCmd = '@';
 }
 
 Shout.prototype = {
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 		var self = this;
+		var userList = global.modules['userlist'];
 
-		if (matches = message.trimRight().match(/^!([\S]*)$/i)) {
-			for (shout in self.shouts) {
-				if (matches[1] === shout) {
-					irc.client.say(chan, self.shouts[shout]);
-					break;
-				}
-			}
-		/* Check for a user parameter in the form of !<shout><space><username> */
-		}else if (matches = message.trimRight().match(/^!\S* \S*$/i)) {
-			var parameters = message.split(" ");
-			for (shout in self.shouts) {
-				/* Use Substr to remove the prefixed '!' */
-				if (parameters[0].substr(1) === shout) {
-					irc.client.say(chan, parameters[1] + ": " + self.shouts[shout]);
-					break;
-				}
+		//match on all text block prefixed by the shout's prefix.
+		var regShoutMatch = new RegExp(this.prefixCmd + '(\\S+)','gi');
+		var shoutMatch;
+
+		//Execute till the time there is a potential shouts to parse.
+		while ((shoutMatch= regShoutMatch.exec(message)) !== null)
+		{
+			//Check if shouts exists..
+			if (self.shouts[shoutMatch[1]] !== undefined)
+			{
+				//check if shout is directed to users x.
+				var userMatch;
+				if (userMatch = message.substring(regShoutMatch.lastIndex).match(/^\s+([\S]+)/i))
+					//if userlist module is not loaded then send as a targeted shouts anyway...
+					if (!(userList === undefined || userList.userExists(chan, userMatch[1])))
+						userMatch = null;
+				irc.client.say(chan, userMatch ?
+					userMatch[1] + ": " + self.shouts[shoutMatch[1]] :
+					self.shouts[shoutMatch[1]])
 			}
 		}
 	}
