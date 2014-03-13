@@ -20,13 +20,6 @@ UserList.prototype = {
 	{
 		return (this.users[chan][who] ? (this.userExists(chan, who)) : this.userModePrefix['default']);
 	},
-	editUserMode: function(chan, who, mode)
-	{
-		if (this.userExists(chan, who))
-			this.users[chan][who] = (this.userModePrefix[mode] == this.users[chan][who]) ?
-				this.userModePrefix['default'] :
-				(this.userModePrefix[mode] || this.userModePrefix['default']);
-	},
 	getUsers: function(chan)
 	{
 		return ((chan !== undefined && this.users[chan] !== undefined) ? this.users[chan] : this.users);
@@ -68,17 +61,13 @@ UserList.prototype = {
 			self.deleteUser(chan, who);
 		});
 		irc.client.on('names', function(chan, nicks){
-			var nick;
-			for (nick in nicks)
-				self.addUser(chan, nick, nicks[nick]);
+			self.users[chan] = nicks;
 		});
-		irc.client.on('+mode', function(chan, by, mode, who){
-			console.log(mode);
-			self.editUserMode(chan, who, mode);
+		irc.client.on('+mode', function(chan){
+			irc.client.send('NAMES', chan);
 		});
-		irc.client.on('-mode', function(chan, by, mode, who){
-			console.log(mode);
-			self.editUserMode(chan, who, mode);
+		irc.client.on('-mode', function(chan){
+			irc.client.send('NAMES', chan);
 		});
 		irc.client.send('NAMES');
 	},
