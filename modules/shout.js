@@ -3,13 +3,14 @@ var Shout = function() {
 	this.shouts = new Loader();
 	this.shouts.load('data/shouts.js');
 	this.shouts = this.shouts.data;
-}
+};
 
 Shout.prototype = {
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 		var self = this;
 
+		var matches, shout;
 		if (matches = message.trimRight().match(/^!([\S]*)$/i)) {
 			for (shout in self.shouts) {
 				if (matches[1] === shout) {

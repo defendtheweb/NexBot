@@ -3,6 +3,8 @@ NexBot
 
 Node.js IRC bot
 
+[![Build Status](https://travis-ci.org/verath/NexBot.png?branch=travisJsHint)](https://travis-ci.org/verath/NexBot)
+
 ## Install and Setup
 
 ### 1 Install Node.JS
