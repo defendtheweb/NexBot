@@ -36,6 +36,7 @@
     "chai": "*"
   },
   "dependencies": {
+  "mathjs": "0.18.x",
 	"mysql": "2.1.x",
 	"irc": "0.3.x", 
 	"lastfm": "0.9.x",
