@@ -25,6 +25,6 @@
 	"greeting": ["Konnichiwa", "Welcome"],
 	"greeting-ignore": ["GitBot"],
 
-	"modules": ["lastfm", "replace", "grooveshark", "issues", "greeting", "searchLink", "kill"],
+	"modules": ["lastfm", "replace", "grooveshark", "issues", "greeting", "searchLink", "kill", "lastseen"],
 	"admin": ["admin"]
 }
