@@ -3,7 +3,7 @@ NexBot
 
 Node.js IRC bot
 
-[![Build Status](https://travis-ci.org/HackThis/NexBot.png?branch=travisJsHint)](https://travis-ci.org/HackThis/NexBot)
+[![Build Status](https://travis-ci.org/HackThis/NexBot.png?branch=master)](https://travis-ci.org/HackThis/NexBot)
 
 ## Install and Setup
 
