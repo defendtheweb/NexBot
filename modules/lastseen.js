@@ -17,8 +17,9 @@ LastSeen.prototype = {
 						lastSeen.setSeconds(lastSeen.getSeconds() - info.idle);
 						irc.client.say(chan, user + ' was last seen on ' + lastSeen);
 					}
-					else
+					else {
 						irc.client.say(chan, user + ' has never been seen.');
+					}
 				});
 			}
 		}
