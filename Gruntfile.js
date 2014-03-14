@@ -3,6 +3,16 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'spec'
+				},
+				src: [
+					"test/**/*.js"
+				]
+			}
+		},
 		jshint: {
 			src: [
 				// Files to hint
@@ -20,7 +30,8 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-mocha-test');
 
-	grunt.registerTask('test', ['jshint']);
+	grunt.registerTask('test', ['jshint', 'mochaTest']);
 	grunt.registerTask('default', ['test']);
 };
