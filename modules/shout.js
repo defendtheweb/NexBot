@@ -24,13 +24,15 @@ Shout.prototype = {
 			{
 				//check if shout is directed to users x.
 				var userMatch;
-				if (userMatch = message.substring(regShoutMatch.lastIndex).match(/^\s+([\S]+)/i))
+				if (userMatch = message.substring(regShoutMatch.lastIndex).match(/^\s+([\S]+)/i)) {
 					//if userlist module is not loaded then send as a targeted shouts anyway...
-					if (!(userList === undefined || userList.userExists(chan, userMatch[1])))
+					if (!(userList === undefined || userList.userExists(chan, userMatch[1]))) {
 						userMatch = null;
+					}
+				}
 				irc.client.say(chan, userMatch ?
 					userMatch[1] + ": " + self.shouts[shoutMatch[1]] :
-					self.shouts[shoutMatch[1]])
+					self.shouts[shoutMatch[1]]);
 
 
 			}
