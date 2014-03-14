@@ -111,9 +111,11 @@ irc.connect = function(channels) {
 	
 	irc.client.once('registered', function(){
 		var moduleName;
-		for (moduleName in modules)
-			if (typeof (modules[moduleName].init) === 'function')
+		for (moduleName in modules){
+			if (typeof (modules[moduleName].init) === 'function'){
 				modules[moduleName].init();
+			}
+		}
 	});
 };
 
