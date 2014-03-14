@@ -3,11 +3,11 @@
 	"channels":["#test"],
 	"nick":"TestBot",
 
-	"debug": "false",
-	"port": "7000",
-	"secure": "true",
-	"certExpired": "true",
-	"selfSigned": "true",
+	"debug": false,
+	"port": 6697,
+	"secure": true,
+	"certExpired": true,
+	"selfSigned": true,
 
 	"groove":"api_key",
 
@@ -25,6 +25,6 @@
 	"greeting": ["Konnichiwa", "Welcome"],
 	"greeting-ignore": ["GitBot"],
 
-	"modules": ["lastfm", "replace", "grooveshark", "issues", "greeting", "searchLink"],
+	"modules": ["lastfm", "replace", "grooveshark", "issues", "greeting", "searchLink", "kill"],
 	"admin": ["admin"]
 }
