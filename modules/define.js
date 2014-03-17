@@ -46,7 +46,7 @@ Define.prototype = {
 	getWordDefinitionFromAPI: function(word, OnSuccess, OnError)
 	{
 		var self = this;
-		this.http.get(this.apiEndpoint.replace("{word}", matches[2].trim()).replace("{apiKey}", this.apiKey), function(res) {
+		this.http.get(this.apiEndpoint.replace("{word}", word.trim()).replace("{apiKey}", this.apiKey), function(res) {
 			res.setEncoding('utf8');
 			var body = '';
 			res.on('data', function(chunk) {
