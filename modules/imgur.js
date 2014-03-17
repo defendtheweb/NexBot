@@ -53,7 +53,7 @@ Imgur.prototype = {
 				});
 
 				res.on('end', function(){
-					// Probably add some better support for performance calls here, as it gets 56 results from Imgur then randomly selects one, it will do this each time.
+					// Probably add some better support for performance calls here, as it gets 56 results from Imgur then randomly selects one, it will do this each time because imgur give us 56 random images then update it every hour.
 					var imgur = JSON.parse(buffered_data).data[(Math.floor(Math.random() * (JSON.parse(buffered_data).data.length - 0 + 1)) + 0)];
 					irc.client.say(chan, imgur.title + " - " + imgur.link + " \u000303" + imgur.ups + "\u000f\u2934 \u000304" + imgur.downs + "\u000f\u2935"); 
 				});
