@@ -44,6 +44,9 @@ Once the bot is running you can use the following commands:
 * ~~!remember foo | !save foo | !note foo - Will add "foo" to the database~~
 * s/foo/bar - Last line you wrote will replace "foo" with "bar"
 * s/foo/bar/user - Last line written by "user" will replace "foo" with "bar"
+* !lastseen user - Returns the date the user was last heard from
+* !define chicken - Will return a definition, multiple calls will cycle through definitions
+* !mustachify http://free-textures.got3d.com/natural/free-character-references/free-character-texture-references-woman-4/images/free-character-texture-references-woman-401.jpg - If a url pointing at an image with one or more faces will return a url with added mustaches
 
 ### Private messaging the bot
 * ~~!remember | !save | !note - Output all records.~~
