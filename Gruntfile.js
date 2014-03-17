@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 					reporter: 'spec'
 				},
 				src: [
-					"test/**/*.js"
+					"test/**/*Test.js"
 				]
 			}
 		},
@@ -32,6 +32,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-mocha-test');
 
-	grunt.registerTask('test', ['jshint', 'mochaTest']);
-	grunt.registerTask('default', ['test']);
+    grunt.registerTask('test', 'Run NexBot test suite', function() {
+        var tasks = ['mochaTest', 'jshint'];
+        grunt.task.run(tasks);
+    });
+
+    grunt.registerTask('default', ['test']);
 };

@@ -4,10 +4,12 @@
 // Get the assert module from chai.
 var assert = require('chai').assert;
 
+require('./testUtil.js');
+
 // Override the global irc with a mock implementation that writes
 // calls to global.irc.client.say to the saidMessages array.
-// NOTE: This function must be called before every call to a method that 
-// uses global.irc as the order which tests are run is not know and we 
+// NOTE: This function must be called before every call to a method that
+// uses global.irc as the order which tests are run is not know and we
 // have to make sure we are writing to the correct saidMessages array.
 var saidMessages = [];
 var overrideIRC = function() {
