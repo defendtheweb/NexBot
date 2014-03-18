@@ -103,7 +103,7 @@ function Mock(objectPrototype) {
             if (objectPrototype.hasOwnProperty(method) &&
                 typeof objectPrototype[method] === "function" && !Mock.prototype.hasOwnProperty(method)) {
 
-                Mock.prototype[method] = createMockMethod(method);
+                _this[method] = createMockMethod(method);
             }
         }
     })();
