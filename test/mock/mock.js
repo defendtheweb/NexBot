@@ -47,6 +47,12 @@ function Mock(objectPrototype) {
     var methodCalls = {};
 
     /**
+     * List of listeners that should be notified of method calls
+     * @type {Array}
+     */
+    var methodCallListeners = [];
+
+    /**
      * Helper method for creating a function that, when called, adds
      * to the appropriate methodCalls array.
      * @param methodName The name of the method that the mock method
@@ -57,6 +63,18 @@ function Mock(objectPrototype) {
         return function mockMethod() {
             _this.registerMethodCall(methodName, arguments);
         };
+    };
+
+    /**
+     * Helper method for notifying all call listeners that a call to
+     * function methodName occurred.
+     * @param methodName
+     * @param methodArgs
+     */
+    var notifyCallListeners = function notifyCallListeners(methodName, methodArgs) {
+        for (var i = 0; i < methodCallListeners.length; i++) {
+            methodCallListeners[i].onMethodCall.call(null, methodName, methodArgs);
+        }
     };
 
     /**
@@ -72,6 +90,7 @@ function Mock(objectPrototype) {
             methodCalls[methodName] = [];
         }
         methodCalls[methodName].push(argsArray);
+        notifyCallListeners(methodName, argsArray);
     };
 
     /**
@@ -88,12 +107,27 @@ function Mock(objectPrototype) {
     };
 
     /**
-     * Resets the recorded method calls.
+     * Resets the recorded method calls and un-sets all method call listeners.
      * @returns {Mock} The this object, for chaining.
      */
     this.reset = function reset() {
         methodCalls = {};
+        methodCallListeners = [];
         return this;
+    };
+
+
+    /**
+     * Registers a listener for method calls.
+     * @param listener An object with an onMethodCall method.
+     */
+    this.registerMethodCallListener = function (listener) {
+        if (typeof listener === 'object' &&
+            typeof listener['onMethodCall'] === 'function') {
+            methodCallListeners.push(listener);
+        } else {
+            throw "Listener must be an object with an onMethodCall method";
+        }
     };
 
     // Find all methods in the objectPrototype and add a mock
