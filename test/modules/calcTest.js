@@ -4,66 +4,51 @@
 // Get the assert module from chai.
 var assert = require('chai').assert;
 
-// Override the global irc with a mock implementation that writes
-// calls to global.irc.client.say to the saidMessages array.
-// NOTE: This function must be called before every call to a method that 
-// uses global.irc as the order which tests are run is not know and we 
-// have to make sure we are writing to the correct saidMessages array.
-var saidMessages = [];
-var overrideIRC = function() {
-	global.irc = {
-		client: {
-			say: function(chan, msg) {
-				saidMessages.push({
-					chan: chan,
-					msg: msg
-				});
-			}
-		}
-	};
-};
+// Create global.irc object, as it is used by the module
+global.irc = {};
+
+// Create a mock irc client
+var mockIrcClient = new (require('./../mock').MockIrcClient)();
 
 // Import our module we want to test
-var Calculator = require("../../modules/calc.js");
+var Calculator = require("../../modules/calc");
 
+describe('Module Calculator', function () {
+    describe('#handle()', function () {
+        it('should calculate the result of a math expression if prepended by !calc', function () {
 
-describe('Module Calculator', function() {
+            global.irc.client = mockIrcClient.reset();
 
-	describe('#handle()', function() {
-		it('should calculate the result of a math expression if prepended by !calc', function() {
-			saidMessages = [];
-			overrideIRC();
-			
-			// Fake a message to the channel testChan
-			Calculator.handle('testFrom', 'testChan', '!calc 2+2');
+            // Fake a message to the channel testChan
+            Calculator.handle('testFrom', 'testChan', '!calc 2+2');
 
-			assert.deepEqual(saidMessages, [{
-				chan: 'testChan',
-				msg: '2+2 = 4'
-			}]);
-		});
+            assert.deepEqual(mockIrcClient.getMethodCalls("say"), [
+                [
+                    'testChan',
+                    '2+2 = 4'
+                ]
+            ]);
+        });
 
-		it('should not run if message not prepended by !calc', function() {
-			saidMessages = [];
-			overrideIRC();
-			
-			// Fake a message to the channel testChan
-			Calculator.handle('testFrom', 'testChan', '!notCalc 2+2');
+        it('should not run if message not prepended by !calc', function () {
+            global.irc.client = mockIrcClient.reset();
 
-			assert.deepEqual(saidMessages, []);
+            // Fake a message to the channel testChan
+            Calculator.handle('testFrom', 'testChan', '!notCalc 2+2');
 
-		});
+            assert.deepEqual(mockIrcClient.getMethodCalls("say"), []);
 
-		it('should not crash if input is not a math expression', function() {
-			saidMessages = [];
-			overrideIRC();
-			
-			// Fake some invalid message to the channel testChan
-			Calculator.handle('testFrom', 'testChan', '!calc .^&%¤3');
-			Calculator.handle('testFrom', 'testChan', '!calc a=this; a*2');
-			Calculator.handle('testFrom', 'testChan', '!calc ');
+        });
 
-			assert.deepEqual(saidMessages, []);
-		});
-	});
+        it('should not crash if input is not a math expression', function () {
+            global.irc.client = mockIrcClient.reset();
+
+            // Fake some invalid message to the channel testChan
+            Calculator.handle('testFrom', 'testChan', '!calc .^&%¤3');
+            Calculator.handle('testFrom', 'testChan', '!calc a=this; a*2');
+            Calculator.handle('testFrom', 'testChan', '!calc ');
+
+            assert.deepEqual(mockIrcClient.getMethodCalls("say"), []);
+        });
+    });
 });
