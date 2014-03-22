@@ -1,6 +1,5 @@
 var Imgur = function() {
 	var Loader = require('../loader.js');
-	this.shouts = new Loader();
 	this.cmd = '!imgur';
 };
 
