@@ -6,6 +6,7 @@ Issues.prototype = {
     https: require('https'),
 
     handle: function (from, chan, message) {
+        var matches;
         if (matches = message.match(/^!([\S]*) ([A-Za-z0-9./]+)$/i)) {
             if (matches[1] === "issues") {
                 this.request(chan, matches[2]);
