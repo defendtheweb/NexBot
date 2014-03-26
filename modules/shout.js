@@ -39,6 +39,8 @@ Shout.prototype = {
 		}
 	},
 	handlePM: function(from, message) {
+		var irc = global.irc;
+		var self = this;
 		var matches = message.match(/^@list$/i);
 		if (matches && matches.length >= 1) {
 		    for(var shout in self.shouts)
