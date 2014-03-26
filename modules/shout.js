@@ -38,7 +38,7 @@ Shout.prototype = {
 			}
 		}
 		
-		if (regShoutMatch.exec(message) === 'list'
+		if (regShoutMatch.exec(message) === 'list')
 		{
 			for(var shout in self.shouts)
 			{
