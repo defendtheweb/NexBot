@@ -37,13 +37,14 @@ Shout.prototype = {
 
 			}
 		}
-		
-		if (regShoutMatch.exec(message) === 'list')
-		{
-			for(var shout in self.shouts)
-			{
-				irc.client.say(chan, shout);
-			}
+	},
+	handlePM: function(from, message) {
+		var matches = message.match(/^@list$/i);
+		if (matches && matches.length >= 1) {
+		    for(var shout in self.shouts)
+		    {
+		        irc.client.say(from, shout);
+		    }
 		}
 	}
 };
