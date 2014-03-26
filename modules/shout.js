@@ -37,6 +37,14 @@ Shout.prototype = {
 
 			}
 		}
+		
+		if (regShoutMatch.exec(message) === 'list'
+		{
+			for(var shout in self.shouts)
+			{
+				irc.client.say(chan, shout);
+			}
+		}
 	}
 };
 
