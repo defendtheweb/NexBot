@@ -43,10 +43,10 @@ Shout.prototype = {
 		var self = this;
 		var matches = message.match(/^@list$/i);
 		if (matches && matches.length >= 1) {
-		    for(var shout in self.shouts)
-		    {
-		        irc.client.say(from, shout);
-		    }
+			for(var shout in self.shouts)
+			{
+				irc.client.say(from, shout);
+			}
 		}
 	}
 };
