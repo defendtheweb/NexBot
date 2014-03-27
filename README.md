@@ -22,7 +22,7 @@ make install
 npm install
 ```
 
-### 3 Setup the database
+### 3 If you plane to use the dbLogger module - setup the database
 ```bash
 mysql -u <user> -p <database> < db.sql
 ```
@@ -52,6 +52,7 @@ Once the bot is running you can use the following commands:
 ### Private messaging the bot
 * ~~!remember | !save | !note - Output all records.~~
 * set last.fm \<user> - Will map the IRC nick to the Last.fm user "foo"
+* @list - Will return a list of all available shout commands
 
 Packages
 ---------
