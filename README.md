@@ -22,7 +22,8 @@ make install
 npm install
 ```
 
-### 3 If you plane to use the dbLogger module - setup the database
+### 3 setup the database
+If you plan on using the dbLogger module
 ```bash
 mysql -u <user> -p <database> < db.sql
 ```
