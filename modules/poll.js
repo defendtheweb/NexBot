@@ -51,15 +51,13 @@ Poll.prototype = {
 			console.log(votes.length);
 
 			for (var n in votes) {
-			    k = votes[n].trim().toLowerCase();
+                            var k = votes[n].trim().toLowerCase();
 
-			    console.log(k);
-			    console.log(n);
-
-			    if (data[k])
-				    data[k]++;
-				else
-					data[k] = 1;
+                            if (data[k]) {
+                                data[k]++;
+                            } else {
+                                data[k] = 1;
+                            }
 			}
 
 			console.log(chan, data);
