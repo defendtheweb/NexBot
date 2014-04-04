@@ -57,18 +57,3 @@ Once the bot is running you can use the following commands:
 * ~~```!remember``` ```!save``` ```!note``` Output all records.~~
 * ```set last.fm <user>``` Will map the IRC nick to the Last.fm user "foo"
 * ```shout list``` Will return a list of all available shout commands
-
-Packages
----------
-* node-irc https://github.com/martynsmith/node-irc
-* lastfm-node https://github.com/jammus/lastfm-node
-* node-bitly https://github.com/tanepiper/node-bitly
-
-Install them via npm using:
-```bash
-npm install mysql irc lastfm bitly 
-```
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/HackThis/nexbot/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
