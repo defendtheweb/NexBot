@@ -38,22 +38,25 @@ mysql -u <user> -p <database> < db.sql
 Start the bot by running `node main.js`. 
 Once the bot is running you can use the following commands:
 
-* !last.fm - Output the last listened track from last.fm
-* !last.fm \<user> - Will get the last track listened to by the user"
-* !groove - Output the last listened track from last.fm in the form of a grooveshark URL.
-* !groove \<song> - Will get the first result from Grooveshark which matches
-* ~~!remember foo | !save foo | !note foo - Will add "foo" to the database~~
-* s/foo/bar - Last line you wrote will replace "foo" with "bar"
-* s/foo/bar/user - Last line written by "user" will replace "foo" with "bar"
-* !lastseen user - Returns the date the user was last heard from
-* !define chicken - Will return a definition, multiple calls will cycle through definitions
-* !mustachify http://free-textures.got3d.com/natural/free-character-references/free-character-texture-references-woman-4/images/free-character-texture-references-woman-401.jpg - If a url pointing at an image with one or more faces will return a url with added mustaches
-* !imgur - Will return a random imgur image e.g. "Voldebean (xpost from r/funny) - http://i.imgur.com/qQQAJ.jpg 330⤴ 27⤵"
+* ```!last.fm``` Output the last listened track from last.fm
+* ```!last.fm <user>``` Will get the last track listened to by the user"
+* ```!groove``` Output the last listened track from last.fm in the form of a grooveshark URL.
+* ```!groove <song>``` Will get the first result from Grooveshark which matches
+* ~~```!remember foo``` ```!save foo``` ```!note foo``` Will add "foo" to the database~~
+* ```s/foo/bar``` Last line you wrote will replace "foo" with "bar"
+* ```s/foo/bar/user``` Last line written by "user" will replace "foo" with "bar"
+* ```!lastseen user``` Returns the date the user was last heard from
+* ```!define chicken``` Will return a definition, multiple calls will cycle through definitions
+* ```!mustachify``` http://free-textures.got3d.com/natural/free-character-references/free-character-texture-references-woman-4/images/free-character-texture-references-woman-401.jpg - If a url pointing at an image with one or more faces will return a url with added mustaches
+* ```!imgur``` Will return a random imgur image e.g. "Voldebean (xpost from r/funny) - http://i.imgur.com/qQQAJ.jpg 330⤴ 27⤵"
+* ```@<shout>``` Returns an image, see PM commands to get list of current sohuts
+* ```!poll <title>``` Starts a poll. Members can vote using !vote and OP can end the poll using ```!poll end```
+* ```!vote <answer>``` Cast your vote on the current poll
 
 ### Private messaging the bot
-* ~~!remember | !save | !note - Output all records.~~
-* set last.fm \<user> - Will map the IRC nick to the Last.fm user "foo"
-* @list - Will return a list of all available shout commands
+* ~~```!remember``` ```!save``` ```!note``` Output all records.~~
+* ```set last.fm <user>``` Will map the IRC nick to the Last.fm user "foo"
+* ```shout list``` Will return a list of all available shout commands
 
 Packages
 ---------
