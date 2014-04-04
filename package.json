@@ -40,7 +40,8 @@
 	"mysql": "2.1.x",
 	"irc": "0.3.x", 
 	"lastfm": "0.9.x",
-	"bitly": "1.2.x"
+	"bitly": "1.2.x",
+	"bars": "https://github.com/jstrace/bars/tarball/master"
   },
   "readme": "", 
   "readmeFilename": "README.md"
