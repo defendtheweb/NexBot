@@ -1,8 +1,8 @@
 var Shout = function() {
 	var Loader = require('../loader.js');
-	this.shouts = new Loader();
-	this.shouts.load('data/shouts.json');
-	this.shouts = this.shouts.data;
+	this.shoutFile = new Loader();
+	this.shoutFile.load('data/shouts.json');
+	this.shouts = this.shoutFile.data;
 	this.prefixCmd = '@';
 };
 
@@ -31,7 +31,7 @@ Shout.prototype = {
 					}
 				}
 				irc.client.say(chan, userMatch ?
-					userMatch[1] + ": " + self.shouts[shoutMatch[1]] :
+					userMatch[1] + ': ' + self.shouts[shoutMatch[1]] :
 					self.shouts[shoutMatch[1]]);
 
 
@@ -41,11 +41,30 @@ Shout.prototype = {
 	handlePM: function(from, message) {
 		var irc = global.irc;
 		var self = this;
-		var matches = message.match(/^@list$/i);
+		var matches = message.match(/^shout list$/i);
 		if (matches && matches.length >= 1) {
 			for(var shout in self.shouts)
 			{
 				irc.client.say(from, shout);
+			}
+		}
+
+
+		//check if user is authenticated
+		if (global.config.get('admin').indexOf(from) >= 0) {
+			/* 2 part */
+			if (matches = message.trimRight().match(/^shout add (.*) ([\S]*)$/i)) {
+				var key = matches[1],
+					url = matches[2];
+
+				// Save new shout in shouts.json
+				this.shoutFile.set(key, url);
+				this.shoutFile.save();
+
+				// Add to loaded array of shouts
+				this.shouts = this.shoutFile.data;
+
+				irc.client.say(from, key + ' added');
 			}
 		}
 	}
