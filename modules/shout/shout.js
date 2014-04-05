@@ -1,8 +1,8 @@
 var Shout = function() {
-	var Loader = require('../loader.js');
-	this.shouts = new Loader();
-	this.shouts.load('data/shouts.json');
-	this.shouts = this.shouts.data;
+	var Loader = require('../../loader.js');
+	this.shoutFile = new Loader();
+	this.shoutFile.load('data/shouts.json');
+	this.shouts = this.shoutFile.data;
 	this.prefixCmd = '@';
 };
 
