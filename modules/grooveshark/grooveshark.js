@@ -1,4 +1,4 @@
-var _Groove = require('../lib/groove.js');
+var _Groove = require('../../lib/groove.js');
 
 var Grooveshark = function() {
 	//Constructor
