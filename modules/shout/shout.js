@@ -1,8 +1,15 @@
 var Shout = function() {
+<<<<<<< HEAD:modules/shout.js
 	var Loader = require('../loader.js');
 	this.shouts = new Loader();
 	this.shouts.load('data/shouts.json');
 	this.shouts = this.shouts.data;
+=======
+	var Loader = require('../../loader.js');
+	this.shoutFile = new Loader();
+	this.shoutFile.load('data/shouts.json');
+	this.shouts = this.shoutFile.data;
+>>>>>>> 056dd03... Modules restructured, each module has it's own README.:modules/shout/shout.js
 	this.prefixCmd = '@';
 };
 
