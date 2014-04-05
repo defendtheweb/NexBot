@@ -3,4 +3,4 @@
 Returns the date the user was last heard from.
 
 # Usage
-```!lastseen <User> - Returns the date the user was last heard from.
+```!lastseen <User>``` - Returns the date the user was last heard from.
