@@ -19,7 +19,7 @@ global.irc = {};
 var mockIrcClient = new (require('./../mock').MockIrcClient)();
 
 // Import our module we want to test
-var Greeting = require("./../../modules/greeting");
+var Greeting = require("./../../modules/greeting/greeting");
 
 describe('Module Greeting', function () {
     describe('#join()', function () {

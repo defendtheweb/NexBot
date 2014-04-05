@@ -1,5 +1,5 @@
 var Imgur = function() {
-	var Loader = require('../loader.js');
+	var Loader = require('../../loader.js');
 	this.cmd = '!imgur';
 };
 

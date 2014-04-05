@@ -1,5 +1,5 @@
 var Shout = function() {
-	var Loader = require('../loader.js');
+	var Loader = require('../../loader.js');
 	this.shoutFile = new Loader();
 	this.shoutFile.load('data/shouts.json');
 	this.shouts = this.shoutFile.data;

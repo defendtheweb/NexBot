@@ -11,7 +11,7 @@ global.irc = {};
 var mockIrcClient = new (require('./../mock').MockIrcClient)();
 
 // Import our module we want to test
-var Calculator = require("../../modules/calc");
+var Calculator = require("../../modules/calc/calc");
 
 describe('Module Calculator', function () {
     describe('#handle()', function () {
