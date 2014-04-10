@@ -80,33 +80,6 @@ irc.connect = function(channels) {
 				modules[i].handlePM(from, message);
 			}
 		}
-		
-		//check if user is authenticated
-		if (config.get('admin').indexOf(from) >= 0) {
-			/* 2 part */
-			var matches;
-			if (matches = message.match(/^([\S]*) (.*)$/i)) {
-				if (matches[1] === "load") {
-
-					var moduleName = matches[2];
-					var modulePath = './modules/' + moduleName + '.js';
-					fs.stat(modulePath, function(err, stat) {
-						if (!err) {
-							//Delete module cache before reloading, forces complete reload
-							var name = require.resolve(modulePath);
-							delete require.cache[name];
-
-							tmp = require(modulePath);
-							modules[moduleName] = tmp;
-							console.log("\033[32m[Module] \033[0m" + moduleName + " loaded");
-							irc.client.say(from, "Module loaded: " + moduleName);
-						} else {
-							irc.client.say(from, "Module not found: " + modulePath);
-						}
-					});
-				}
-			}
-		}
 	});
 	
 	irc.client.once('registered', function(){
