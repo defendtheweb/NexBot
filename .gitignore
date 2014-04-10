@@ -1,2 +1,6 @@
 data/
 *.log
+node_modules/
+
+## WebStorm files
+.idea/
