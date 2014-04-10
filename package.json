@@ -26,11 +26,22 @@
   "engines": {
     "node": ">=0.6"
   },
+  "scripts" : {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-jshint": "0.9.x",
+    "grunt-mocha-test": "0.9.x",
+    "chai": "*"
+  },
   "dependencies": {
+  "mathjs": "0.18.x",
 	"mysql": "2.1.x",
 	"irc": "0.3.x", 
 	"lastfm": "0.9.x",
-	"bitly": "1.2.x"
+	"bitly": "1.2.x",
+	"bars": "https://github.com/jstrace/bars/tarball/master"
   },
   "readme": "", 
   "readmeFilename": "README.md"
