@@ -2,6 +2,7 @@
 	"server":"irc.hackthis.co.uk",
 	"channels":["#test"],
 	"nick":"TestBot",
+	"nickserv":"password",
 
 	"debug": false,
 	"port": 6697,
