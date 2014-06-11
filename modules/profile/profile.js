@@ -13,19 +13,20 @@ Profile.prototype = {
 			if (matches[1] === "profile") {
 				var user = matches[2] || from;
 				user = user.trim();
+				var self = this;
 
-				var req = this.https.request('https://api.hackthis.co.uk/?api_key='+this.api_key+'&method=user.getInfo&user='+user, function(res) {
-					res.on('data', function(d) {
-						var obj = {};
-						// Get the result and turn it into a JSON object.
-						try {
-							obj = JSON.parse(d);
-						} catch (e) {
-							console.log("\033[33m[HackThis API]\033[0m " + e);
-						}
-						if (obj.data) {
+				var req = this.https.request('https://www.hackthis.co.uk/wechall/userscore.php?authkey='+this.api_key+'&username='+user, function(res) {
+					res.setEncoding('utf8');
+					var body = '';
+					res.on('data', function(chunk) {
+						body += chunk;
+					});
+
+					res.on('end', function(){
+						if (body != 0) {
+							data = body.split(":");
 							// Return the string.
-							var result = obj.data.user + " | Score: " + obj.data.score + " | Posts: " + obj.data.posts + " | Consecutive: " + obj.data.consecutive;
+							var result = data[0] + " | Rank: " + data[1] + " | Score: " + self.addCommas(data[2]) + " | Levels: " + data[4] + '/' + data[5];
 							irc.client.say(chan, result);
 						} else {
 							irc.client.say(chan, "User not found");
@@ -39,6 +40,17 @@ Profile.prototype = {
 				});
 			}
 		}
+	},
+	addCommas: function(nStr) {
+	    nStr += '';
+	    x = nStr.split('.');
+	    x1 = x[0];
+	    x2 = x.length > 1 ? '.' + x[1] : '';
+	    var rgx = /(\d+)(\d{3})/;
+	    while (rgx.test(x1)) {
+	            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	    }
+	    return x1 + x2;
 	}
 };
 
