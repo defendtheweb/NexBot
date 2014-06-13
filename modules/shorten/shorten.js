@@ -6,7 +6,40 @@ Shorten.prototype = {
 	https: require('https'),
 	querystring: require('querystring'),
 	api_key: global.config.get('youtube_api'),
-	regex: new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/),
+	handle: function(from, chan, message) {
+		var irc = global.irc;
+
+		var matches;
+		if (matches = message.match(/^!shorten stats ([\S]+)?$/i)) {
+			var url = matches[1].trim();
+
+			var req = this.https.request('https://www.googleapis.com/urlshortener/v1/url?shortUrl='+url+'&key='+this.api_key+'&projection=FULL', function(res) {
+				res.setEncoding('utf8');
+				var body = '';
+				res.on('data', function(chunk) {
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					console.log(body);
+					if (body != 0) {
+						var obj = JSON.parse(body);
+						if (obj && obj.longUrl) {
+							// Return the string.
+							var result = obj.longUrl + ' | Clicks: ' + obj.analytics.allTime.shortUrlClicks;
+							
+							irc.client.say(chan, result);
+						}
+					}
+				});
+			});
+			req.end();
+
+			req.on('error', function(e) {
+				irc.client.say(chan, "Errm there's be an error");
+			});
+		}
+	},
 	handlePM: function(from, message) {
 		var irc = global.irc;
 
@@ -15,7 +48,6 @@ Shorten.prototype = {
 			if (matches[1] === "shorten" || matches[1] === "s") {
 
 				var url = matches[2].trim();
-				var self = this;
 
 				  // Build the post string from an object
 				  var post_data = JSON.stringify({
