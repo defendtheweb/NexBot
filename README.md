@@ -52,8 +52,12 @@ Once the bot is running you can use the following commands:
 * ```@<shout>``` Returns an image, see PM commands to get list of current sohuts
 * ```!poll <title>``` Starts a poll. Members can vote using !vote and OP can end the poll using ```!poll end```
 * ```!vote <answer>``` Cast your vote on the current poll
+* ```!shorten stats <goo.gl url>``` Get full url and stats for shortened url
+* ```!profile <username>``` Get user profile details from HackThis!!
+
 
 ### Private messaging the bot
 * ~~```!remember``` ```!save``` ```!note``` Output all records.~~
 * ```set last.fm <user>``` Will map the IRC nick to the Last.fm user "foo"
 * ```shout list``` Will return a list of all available shout commands
+* ```shorten <url> [<channel>]``` Shorten URL and optionally send to channel
