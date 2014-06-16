@@ -54,6 +54,7 @@ Once the bot is running you can use the following commands:
 * ```!vote <answer>``` Cast your vote on the current poll
 * ```!shorten stats <goo.gl url>``` Get full url and stats for shortened url
 * ```!profile <username>``` Get user profile details from HackThis!!
+* ```!imdb <term>``` Lookup film on IMDB
 
 
 ### Private messaging the bot
