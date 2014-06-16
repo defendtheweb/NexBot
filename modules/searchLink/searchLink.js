@@ -28,7 +28,7 @@ var SearchLink = function() { //Constructor
 		},
 		{
 			'trigger': ['search', 'ddg', 'DDG', 'duck'],
-			'url': 'https://duckduckgo.com/?q=%query%&kp=-1'
+			'url': 'https://duckduckgo.com/?q=!%20%query%&kp=-1'
 		}
 	];
 
