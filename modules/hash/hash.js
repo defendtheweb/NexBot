@@ -43,7 +43,7 @@ Hash.prototype = {
 					return;
 				}
 
-				if (result.found && result.foud == "true") {
+				if (result.found == "true") {
 					if (result.type != 'plaintext') {
 						global.irc.client.say(chan, result.hashes[0].plaintext + ' | ' + result.type);
 					} else {
@@ -58,11 +58,16 @@ Hash.prototype = {
 
 					if (result.type) {
 						res += ' | Possible type: ';
-						var len = result.type.length;
-						for (var i = 0; i < len; i++) {
-							res += result.type[i] + ', ';
+
+						if (result.type instanceof Array) {
+							var len = result.type.length;
+							for (var i = 0; i < len; i++) {
+								res += result.type[i] + ', ';
+							}
+							res = res.substring(0, res.length-2);
+						} else {
+							res += result.type;
 						}
-						res = res.substring(0, res.length-1);
 					}
 					global.irc.client.say(chan, res);
 				}
