@@ -10,14 +10,22 @@ Hash.prototype = {
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 		var matches;
-		if (matches = message.trimRight().match(/^!([\S]*) ([\S]+)$/i)) {
+		if (matches = message.trimRight().match(/^!([\S]*) ([\S]+)(?: (.+))?$/i)) {
 			if (matches[1] === 'hash') {
 				var self = this;
-				this.getHash(matches[2].toLowerCase(), chan);
+				var type ='';
+				var hash = matches[2].toLowerCase();
+
+				if (matches[3]) {
+					type = hash;
+					hash = matches[3].toLowerCase();
+				}
+
+				this.getHash(hash, type, chan);
 			}
 		}
 	},
-	getHash: function(hash, chan)
+	getHash: function(hash, type, chan)
 	{
 		var self = this;
 		this.https.get(this.apiEndpoint.replace("{q}", hash.trim()), function(res) {
@@ -36,10 +44,14 @@ Hash.prototype = {
 				}
 				
 				if (result.found) {
-					if (result.type != plaintext) {
-						global.irc.client.say(chan, result.plaintext + ' | ' + result.type);
+					if (result.type != 'plaintext') {
+						global.irc.client.say(chan, result.hashes[0].plaintext + ' | ' + result.type);
 					} else {
-
+						if (result.hashes[0][type]) {
+							global.irc.client.say(chan, result.hashes[0].plaintext + ' | ' + result.hashes[0][type]);
+						} else {
+							global.irc.client.say(chan, type + ' is not supported');
+						}
 					}
 				} else {
 					var res = 'Hash not found';
