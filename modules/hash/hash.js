@@ -42,8 +42,8 @@ Hash.prototype = {
 				} catch (ex) {
 					return;
 				}
-				
-				if (result.found) {
+
+				if (result.found && result.foud == "true") {
 					if (result.type != 'plaintext') {
 						global.irc.client.say(chan, result.hashes[0].plaintext + ' | ' + result.type);
 					} else {
@@ -59,7 +59,7 @@ Hash.prototype = {
 					if (result.type) {
 						res += ' | Possible type: ';
 						var len = result.type.length;
-						for (var i = 0; i < arrayLength; i++) {
+						for (var i = 0; i < len; i++) {
 							res += result.type[i] + ', ';
 						}
 						res = res.substring(0, res.length-1);
