@@ -21,8 +21,7 @@ global.modules = modules;
 //create modules and add to array of loaded modules
 for (var i in tmpModules) {
 	var moduleName = tmpModules[i];
-	var tmp = require('./modules/' + moduleName + '/' + moduleName + '.js');
-	modules[moduleName] = tmp;
+	modules[moduleName] = require('./modules/' + moduleName + '/' + moduleName + '.js');
 	console.log("\033[32m[Module] \033[0m" + moduleName + " loaded");
 }
 

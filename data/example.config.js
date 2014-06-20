@@ -20,7 +20,7 @@
 	
 	"wordnik_api": "api_key",
 
-	"mysql_db":"localhost",
+	"mysql_host":"localhost",
 	"mysql_user":"username",
 	"mysql_pass":"password",
 	"mysql_db": "database",

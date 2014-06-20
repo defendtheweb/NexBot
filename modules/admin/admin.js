@@ -19,7 +19,7 @@ Admin.prototype = {
                 } else if (matches[1] === 'leave') {
                     irc.part(matches[2], "Goodbye cruel world");
                 } else if (matches[1] === 'nick') {
-                    irc..send('NICK', matches[2]);
+                    irc.send('NICK', matches[2]);
                 }
             }
         }

@@ -19,7 +19,7 @@ IMDB.prototype = {
 				});
 
 				res.on('end', function(){
-					if (body != 0) {
+					if (body) {
 						var obj = JSON.parse(body);
 						if (obj && obj.Title) {
 							irc.client.say(chan, obj.Title + ' | Rating: ' + obj.imdbRating + ' | ' + obj.Plot);

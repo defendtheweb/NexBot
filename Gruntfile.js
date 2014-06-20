@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 			],
 			options: {
 				jshintrc: '.jshintrc'
-			},
+			}
 		}
 	});
 
