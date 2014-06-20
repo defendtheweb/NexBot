@@ -1,3 +1,5 @@
+var utils = require('../../lib/utils.js');
+
 var Profile = function() {
 	//Constructor
 };
@@ -23,10 +25,10 @@ Profile.prototype = {
 					});
 
 					res.on('end', function(){
-						if (body != 0) {
-							data = body.split(":");
+						if (body) {
+							var data = body.split(":");
 							// Return the string.
-							var result = data[0] + " | Rank: " + data[1] + " | Score: " + self.addCommas(data[2]) + " | Levels: " + data[4] + '/' + data[5];
+							var result = data[0] + " | Rank: " + data[1] + " | Score: " + utils.addCommas(data[2]) + " | Levels: " + data[4] + '/' + data[5];
 							irc.client.say(chan, result);
 						} else {
 							irc.client.say(chan, "User not found");
@@ -40,17 +42,6 @@ Profile.prototype = {
 				});
 			}
 		}
-	},
-	addCommas: function(nStr) {
-	    nStr += '';
-	    x = nStr.split('.');
-	    x1 = x[0];
-	    x2 = x.length > 1 ? '.' + x[1] : '';
-	    var rgx = /(\d+)(\d{3})/;
-	    while (rgx.test(x1)) {
-	            x1 = x1.replace(rgx, '$1' + ',' + '$2');
-	    }
-	    return x1 + x2;
 	}
 };
 

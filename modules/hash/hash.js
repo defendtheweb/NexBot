@@ -43,8 +43,8 @@ Hash.prototype = {
 					return;
 				}
 
-				if (result.found == "true") {
-					if (result.type != 'plaintext') {
+				if (result.found === "true") {
+					if (result.type !== 'plaintext') {
 						global.irc.client.say(chan, result.hashes[0].plaintext + ' | ' + result.type);
 					} else {
 						if (result.hashes[0][type]) {
@@ -76,7 +76,7 @@ Hash.prototype = {
 		}).on('error', function(error) {
 			//
 		});
-	},
+	}
 };
 
 module.exports = new Hash();

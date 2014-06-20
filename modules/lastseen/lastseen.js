@@ -3,7 +3,7 @@ var LastSeen = function() {
 };
 
 LastSeen.prototype = {
-	// public message recieved
+	// public message received
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 		var matches;

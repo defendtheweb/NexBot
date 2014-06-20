@@ -35,7 +35,7 @@ var SearchLink = function() { //Constructor
 	/**
 	 * Regex for finding "!<trigger> <query>"
 	 */
-	var searchRegex = new RegExp(/^!([\S]+) (.+)$/i);
+	var searchRegex = /^!([\S]+) (.+)$/i;
 
 	/**
 	 * Takes a trigger string and returns the associated

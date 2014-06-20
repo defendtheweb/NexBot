@@ -49,7 +49,7 @@ Once the bot is running you can use the following commands:
 * ```!define chicken``` Will return a definition, multiple calls will cycle through definitions
 * ```!mustachify``` http://free-textures.got3d.com/natural/free-character-references/free-character-texture-references-woman-4/images/free-character-texture-references-woman-401.jpg - If a url pointing at an image with one or more faces will return a url with added mustaches
 * ```!imgur``` Will return a random imgur image e.g. "Voldebean (xpost from r/funny) - http://i.imgur.com/qQQAJ.jpg 330⤴ 27⤵"
-* ```@<shout>``` Returns an image, see PM commands to get list of current sohuts
+* ```@<shout>``` Returns an image, see PM commands to get list of current shouts
 * ```!poll <title>``` Starts a poll. Members can vote using !vote and OP can end the poll using ```!poll end```
 * ```!vote <answer>``` Cast your vote on the current poll
 * ```!shorten stats <goo.gl url>``` Get full url and stats for shortened url

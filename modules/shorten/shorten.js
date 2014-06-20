@@ -21,8 +21,7 @@ Shorten.prototype = {
 				});
 
 				res.on('end', function(){
-					console.log(body);
-					if (body != 0) {
+					if (body) {
 						var obj = JSON.parse(body);
 						if (obj && obj.longUrl) {
 							// Return the string.
@@ -49,21 +48,21 @@ Shorten.prototype = {
 
 				var url = matches[2].trim();
 
-				  // Build the post string from an object
-				  var post_data = JSON.stringify({
-				      'longUrl' : url
-				  });
+                // Build the post string from an object
+                var post_data = JSON.stringify({
+                    'longUrl': url
+                });
 
-				  // An object of options to indicate where to post to
-				  var post_options = {
-				      host: 'www.googleapis.com',
-				      port: '443',
-				      path: '/urlshortener/v1/url?key='+this.api_key,
-				      method: 'POST',
-				      headers: {
-				          'Content-Type': 'application/json'
-				      }
-				  };
+                // An object of options to indicate where to post to
+                var post_options = {
+                    host: 'www.googleapis.com',
+                    port: '443',
+                    path: '/urlshortener/v1/url?key=' + this.api_key,
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
 
 				var req = this.https.request(post_options, function(res) {
 					res.setEncoding('utf8');
@@ -74,7 +73,7 @@ Shorten.prototype = {
 
 					res.on('end', function(){
 						console.log(body);
-						if (body != 0) {
+						if (body) {
 							var obj = JSON.parse(body);
 							if (obj && obj.id) {
 								// Return the string.
@@ -93,7 +92,7 @@ Shorten.prototype = {
 				req.end();
 
 				req.on('error', function(e) {
-					irc.client.say(chan, "Errm there's be an error");
+					irc.client.say(from, "Errm there's be an error");
 				});
 			}
 		}

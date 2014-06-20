@@ -2,7 +2,6 @@ var _Groove = require('../../lib/groove.js');
 
 var Grooveshark = function() {
 	//Constructor
-	var self = this;
 	this.api = new _Groove(global.config.get('groove'));
 
 	//Check if lastfm module is loaded
