@@ -8,3 +8,4 @@ notifications:
           - "irc.macak.co.uk#hackthis-dev"
         template:
           - "%{repository}#%{build_number} (%{branch} - %{commit}): %{message}"
+        skip_join: true
