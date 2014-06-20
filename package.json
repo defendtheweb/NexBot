@@ -34,7 +34,9 @@
     "grunt": "0.4.x",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "0.9.x",
-    "grunt-mocha-test": "0.9.x"
+    "grunt-mocha-test": "0.9.x",
+    "nock": "^0.36.2",
+    "sinon": "^1.10.2"
   },
   "dependencies": {
     "mathjs": "0.18.x",

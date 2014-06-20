@@ -1,54 +1,83 @@
 // Make sure jsHint allows the use of Mocha-globals
 /* global describe, it */
 
-// Get the assert module from chai.
+// Make sure jsHint allows the use of Mocha-globals
+/* global describe, it, before, after, beforeEach, afterEach */
+
 var assert = require('chai').assert;
+var nock = require('nock'); // nock allows for mocking http(s) requests
+var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
-// Create global.irc object, as it is used by the module
-global.irc = {};
 
-// Create a mock irc client
-var mockIrcClient = new (require('./../mock').MockIrcClient)();
+// Import the module to test
+var issues = require('../../modules/issues/issues.js');
 
-// Import our module we want to test
-var Calculator = require("../../modules/calc/calc");
+// Import the module to test
+var calculator = require("../../modules/calc/calc");
 
-describe('Module Calculator', function () {
+describe('Module calculator', function () {
+
+    before(function(){
+        // Force all http(s) connections to be mocked
+        nock.disableNetConnect();
+        // We need to provide an irc client, an empty one will do
+        global.irc = {
+            'client': {
+                'say': function(){}
+            }
+        };
+    });
+
+    after(function(){
+        // Cleanup
+        nock.enableNetConnect();
+        delete global.irc;
+    });
+
+    var stubIrcSay;
+    beforeEach(function(){
+        // Stub the client.say method for each test
+        stubIrcSay = sinon.stub(global.irc.client, 'say');
+    });
+
+    afterEach(function(){
+        stubIrcSay.restore();
+        nock.cleanAll();
+    });
+
+
     describe('#handle()', function () {
         it('should calculate the result of a math expression if prepended by !calc', function () {
 
-            global.irc.client = mockIrcClient.reset();
+            calculator.handle('testFrom', 'testChan', '!calc 2+2');
 
-            // Fake a message to the channel testChan
-            Calculator.handle('testFrom', 'testChan', '!calc 2+2');
+            assert.isTrue(stubIrcSay.calledOnce);
+            assert.deepEqual(stubIrcSay.args[0], ['testChan', '2+2 = 4']);
 
-            assert.deepEqual(mockIrcClient.getMethodCalls("say"), [
-                [
-                    'testChan',
-                    '2+2 = 4'
-                ]
-            ]);
         });
 
+
         it('should not run if message not prepended by !calc', function () {
-            global.irc.client = mockIrcClient.reset();
 
             // Fake a message to the channel testChan
-            Calculator.handle('testFrom', 'testChan', '!notCalc 2+2');
-
-            assert.deepEqual(mockIrcClient.getMethodCalls("say"), []);
+            calculator.handle('testFrom', 'testChan', '!notCalc 2+2');
+            assert.equal(stubIrcSay.callCount, 0);
 
         });
 
         it('should not crash if input is not a math expression', function () {
-            global.irc.client = mockIrcClient.reset();
+            // Prevent error spam to console.
+            var _consoleLog = console.log;
+            console.log = function(){};
 
             // Fake some invalid message to the channel testChan
-            Calculator.handle('testFrom', 'testChan', '!calc .^&%¤3');
-            Calculator.handle('testFrom', 'testChan', '!calc a=this; a*2');
-            Calculator.handle('testFrom', 'testChan', '!calc ');
+            calculator.handle('testFrom', 'testChan', '!calc .^&%¤3');
+            calculator.handle('testFrom', 'testChan', '!calc a=this; a*2');
+            calculator.handle('testFrom', 'testChan', '!calc ');
 
-            assert.deepEqual(mockIrcClient.getMethodCalls("say"), []);
+            console.log = _consoleLog;
+
+            assert.equal(stubIrcSay.callCount, 0);
         });
     });
 });
