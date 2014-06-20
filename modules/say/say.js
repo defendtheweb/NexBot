@@ -1,4 +1,4 @@
-ar say = function() {
+var say = function() {
 };
 
 say.prototype = {
