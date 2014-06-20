@@ -3,3 +3,4 @@ node_js:
   - 0.10
 notifications:
     email: false
+    irc: "irc.macak.co.uk#hackthis-dev"
