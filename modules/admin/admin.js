@@ -11,15 +11,15 @@ Admin.prototype = {
         if (global.config.get('admin').indexOf(from) >= 0) {
             /* 2 part */
             var matches;
-            if (matches = message.trimRight().match(/^!([\S]*) (.*)$/i)) {
+            if (matches = message.trimRight().match(/^([\S]*) (.*)$/i)) {
                 if (matches[1] === 'join') {
-                    irc.join(matches[2], function() {
-                        irc.say(matches[2], "Hello " + matches[2]);
+                    irc.client.join(matches[2], function() {
+                        irc.client.say(matches[2], "Hello " + matches[2]);
                     });
                 } else if (matches[1] === 'leave') {
-                    irc.part(matches[2], "Goodbye cruel world");
+                    irc.client.part(matches[2], "Goodbye cruel world");
                 } else if (matches[1] === 'nick') {
-                    irc.send('NICK', matches[2]);
+                    irc.client.send('NICK', matches[2]);
                 }
             }
         }
