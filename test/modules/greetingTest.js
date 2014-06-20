@@ -5,6 +5,7 @@ var assert = require('chai').assert;
 var nock = require('nock'); // nock allows for mocking http(s) requests
 var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
+var greetingModulePath = '../../modules/greeting/greeting';
 
 describe('Module Greeting', function () {
 
@@ -32,6 +33,9 @@ describe('Module Greeting', function () {
 
     var stubIrcSay;
     beforeEach(function(){
+        // Make sure the module is not cached
+        delete require.cache[require.resolve(greetingModulePath)];
+
         // Stub the client.say method for each test
         stubIrcSay = sinon.stub(global.irc.client, 'say');
     });
@@ -49,12 +53,14 @@ describe('Module Greeting', function () {
             mockConfigGet.withArgs("nick").returns("NexBot");
             mockConfigGet.withArgs("greeting-ignore").returns([]);
 
-            var greeting = require('../../modules/greeting/greeting');
+            var greeting = require(greetingModulePath);
             greeting.join('testChan', 'testUser', 'testMsg');
 
             mockConfigGet.restore();
 
-            assert.isTrue(stubIrcSay.calledWith('testChan', 'testGreeting testUser'));
+
+            assert.isTrue(stubIrcSay.calledOnce);
+            assert.deepEqual(stubIrcSay.args[0], ['testChan', 'testGreeting testUser']);
         });
 
         it('should not send greeting to itself when joining the channel', function () {
@@ -64,7 +70,7 @@ describe('Module Greeting', function () {
             mockConfigGet.withArgs("nick").returns(selfName);
             mockConfigGet.withArgs("greeting-ignore").returns([]);
 
-            var greeting = require('../../modules/greeting/greeting');
+            var greeting = require(greetingModulePath);
             greeting.join('testChan', selfName, 'testMsg');
 
             mockConfigGet.restore();
@@ -79,7 +85,7 @@ describe('Module Greeting', function () {
             mockConfigGet.withArgs("nick").returns("NexBot");
             mockConfigGet.withArgs("greeting-ignore").returns([ignoredName]);
 
-            var greeting = require('../../modules/greeting/greeting');
+            var greeting = require(greetingModulePath);
             greeting.join('testChan', ignoredName, 'testMsg');
 
             mockConfigGet.restore();
@@ -94,12 +100,13 @@ describe('Module Greeting', function () {
             mockConfigGet.withArgs("nick").returns("NexBot");
             mockConfigGet.withArgs("greeting-ignore").returns([]);
 
-            var greeting = require('../../modules/greeting/greeting');
+            var greeting = require(greetingModulePath);
             greeting.join('testChan', 'testUser', 'testMsg');
 
             mockConfigGet.restore();
 
-            assert.isTrue(stubIrcSay.calledWith('testChan', 'testGreeting testUser'));
+            assert.isTrue(stubIrcSay.calledOnce);
+            assert.deepEqual(stubIrcSay.args[0], ['testChan', 'testGreeting testUser']);
         });
     });
 });
