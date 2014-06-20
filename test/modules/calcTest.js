@@ -50,7 +50,9 @@ describe('Module calculator', function () {
         it('should calculate the result of a math expression if prepended by !calc', function () {
 
             calculator.handle('testFrom', 'testChan', '!calc 2+2');
-            assert.isTrue(stubIrcSay.calledWith('testChan', '2+2 = 4'));
+
+            assert.isTrue(stubIrcSay.calledOnce);
+            assert.deepEqual(stubIrcSay.args[0], ['testChan', '2+2 = 4']);
 
         });
 
