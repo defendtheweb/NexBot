@@ -3,4 +3,11 @@ node_js:
   - 0.10
 notifications:
     email: false
-    irc: "irc.macak.co.uk#hackthis-dev"
+    irc:
+        channels:
+          - "irc.macak.co.uk#hackthis-dev"
+        template:
+          - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+        on_success: 'change'
+        use_notice: true
+        skip_join: true
