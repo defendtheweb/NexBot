@@ -26,23 +26,24 @@
   "engines": {
     "node": ">=0.6"
   },
-  "scripts" : {
+  "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
+    "chai": "*",
     "grunt": "0.4.x",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "0.9.x",
-    "grunt-mocha-test": "0.9.x",
-    "chai": "*"
+    "grunt-mocha-test": "0.9.x"
   },
   "dependencies": {
-  "mathjs": "0.18.x",
-	"mysql": "2.1.x",
-	"irc": "0.3.x", 
-	"lastfm": "0.9.x",
-	"bitly": "1.2.x",
-	"bars": "https://github.com/jstrace/bars/tarball/master"
+    "mathjs": "0.18.x",
+    "mysql": "2.1.x",
+    "irc": "0.3.x",
+    "lastfm": "0.9.x",
+    "bitly": "1.2.x",
+    "bars": "https://github.com/jstrace/bars/tarball/master"
   },
-  "readme": "", 
+  "readme": "",
   "readmeFilename": "README.md"
 }
