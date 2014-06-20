@@ -1,6 +1,6 @@
 // Make sure jsHint allows the use of Mocha-globals
 /* global describe, it */
-
+/*
 // Get the assert module from chai.
 var assert = require('chai').assert;
 
@@ -46,3 +46,4 @@ describe('Module Example', function () {
         });
     });
 });
+*/
