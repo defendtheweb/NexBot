@@ -1,3 +1,5 @@
+var utils = require('../../lib/utils.js');
+
 var YouTube = function() {
 	//Constructor
 };
@@ -63,7 +65,7 @@ YouTube.prototype = {
 							var obj = JSON.parse(body);
 							if (obj && obj.items && obj.items.length > 0) {
 								// Return the string.
-								var result = obj.items[0].snippet.title + ' | Views: ' + self.addCommas(obj.items[0].statistics.viewCount) + ' | Ratin: ' + obj.items[0].statistics.likeCount + '/' + obj.items[0].statistics.dislikeCount;
+								var result = obj.items[0].snippet.title + ' | Views: ' + utils.addCommas(obj.items[0].statistics.viewCount) + ' | Ratin: ' + obj.items[0].statistics.likeCount + '/' + obj.items[0].statistics.dislikeCount;
 								irc.client.say(chan, result);
 							}
 						}
@@ -76,24 +78,7 @@ YouTube.prototype = {
 				});
 			}
 		}
-	},
-    /**
-     * Takes a number and adds a comma after every third value digit.
-     * For example, "200000.12313" becomes "200,000.12313".
-     * @param nStr A number, either as a string or as a number.
-     * @returns {string} A human-friendly version of the number.
-     */
-    addCommas: function(nStr) {
-        nStr += '';
-        var x = nStr.split('.'),
-            x1 = x[0],
-            x2 = x.length > 1 ? '.' + x[1] : '',
-            rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
-        }
-        return x1 + x2;
-    }
+	}
 };
 
 module.exports = new YouTube();
