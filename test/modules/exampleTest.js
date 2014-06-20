@@ -1,49 +1,65 @@
 // Make sure jsHint allows the use of Mocha-globals
 /* global describe, it */
-/*
-// Get the assert module from chai.
+
+// Make sure jsHint allows the use of Mocha-globals
+/* global describe, it, before, after, beforeEach, afterEach */
+
 var assert = require('chai').assert;
+var nock = require('nock'); // nock allows for mocking http(s) requests
+var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
-// Create global.irc object, as it is used by the module
-global.irc = {};
 
-// Create a mock irc client
-var mockIrcClient = new (require('./../mock').MockIrcClient)();
+// Import the module to test
+var issues = require('../../modules/issues/issues.js');
 
-// Import our module we want to test
-var Example = require("../../modules/example/example.js");
+// Import the module to test
+var example = require("../../modules/example/example");
 
 describe('Module Example', function () {
+
+    before(function(){
+        // We need to provide an irc client, an empty one will do
+        global.irc = {
+            'client': {
+                'say': function(){}
+            }
+        };
+    });
+
+    after(function(){
+        delete global.irc;
+    });
+
+    var stubIrcSay;
+    beforeEach(function(){
+        // Stub the client.say method for each test
+        stubIrcSay = sinon.stub(global.irc.client, 'say');
+    });
+
+    afterEach(function(){
+        stubIrcSay.restore();
+        nock.cleanAll();
+    });
+
     describe('#handle()', function () {
         it('should send "Hello channel" to the channel', function () {
-            global.irc.client = mockIrcClient.reset();
 
             // Fake a message to the channel testChan
-            Example.handle('testFrom', 'testChan', 'testMsg');
+            example.handle('testFrom', 'testChan', 'testMsg');
 
-            assert.deepEqual(mockIrcClient.getMethodCalls("say"), [
-                [
-                    'testChan',
-                    'Hello channel'
-                ]
-            ]);
+            assert.isTrue(stubIrcSay.calledOnce);
+            assert.deepEqual(stubIrcSay.args[0], ['testChan', 'Hello channel']);
         });
     });
 
-    describe('#handlePM', function () {
+    describe('#handlePM()', function () {
         it('should send "Hello <user>" to the user', function () {
-            global.irc.client = mockIrcClient.reset();
 
             // Fake a PM from 'testUser'
-            Example.handlePM('testUser', 'testMsg');
+            example.handlePM('testUser', 'testMsg');
 
-            assert.deepEqual(mockIrcClient.getMethodCalls("say"), [
-                [
-                    'testUser',
-                    'Hello testUser'
-                ]
-            ]);
+            assert.isTrue(stubIrcSay.calledOnce);
+            assert.deepEqual(stubIrcSay.args[0], ['testUser', 'Hello testUser']);
         });
     });
 });
-*/
