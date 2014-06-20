@@ -10,7 +10,7 @@ YouTube.prototype = {
 	regex: /(https?\:\/\/)?((www\.)?youtube\.com|youtu\.?be)\/(watch\?v=)?([^\s]+)/,
 	handle: function(from, chan, message) {
 		var irc = global.irc;
-        var self = this;
+		var self = this;
 
 		var matches, req;
 		if (matches = message.match(/^!([\S]*) (.+)$/i)) {
