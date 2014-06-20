@@ -18,6 +18,13 @@ var tmpModules = config.get('modules');
 var modules = [];
 global.modules = modules;
 
+// handle all uncaught exceptions quietly
+process.on('uncaughtException', function(err) {
+	console.log('Caught exception: ' + err);
+});
+
+
+
 //create modules and add to array of loaded modules
 for (var i in tmpModules) {
 	var moduleName = tmpModules[i];
