@@ -4,7 +4,7 @@ var Help = function() {
 
 Help.prototype = {
 
-	// private message recieved
+	// private message received
 	handlePM: function(from, message) {
 		var matches = message.match(/^help(?: ([a-zA-Z]+))?$/i);
 		if (matches) {
@@ -28,7 +28,6 @@ Help.prototype = {
 			} else {
 				var modules = '';
 
-				var count = global.modules.length;
 				for(var index in global.modules) {
 					modules += index + ', ';
 				}
