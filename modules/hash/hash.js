@@ -5,14 +5,10 @@ var Hash = function() {
 
 Hash.prototype = {
 	https: require('https'),
-	debug: global.config.get('debug'),
-	apiKey: global.config.get('wordnik_api'),
 	handle: function(from, chan, message) {
-		var irc = global.irc;
 		var matches;
 		if (matches = message.trimRight().match(/^!([\S]*) ([\S]+)(?: (.+))?$/i)) {
 			if (matches[1] === 'hash') {
-				var self = this;
 				var type = '';
 				var hash = matches[2].toLowerCase();
 
@@ -25,9 +21,7 @@ Hash.prototype = {
 			}
 		}
 	},
-	getHash: function(hash, type, chan)
-	{
-		var self = this;
+	getHash: function(hash, type, chan)	{
 		this.https.get(this.apiEndpoint.replace("{q}", hash.trim()), function(res) {
 			res.setEncoding('utf8');
 			var body = '';
