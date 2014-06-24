@@ -10,6 +10,11 @@ IMDB.prototype = {
 		var matches;
 		if (matches = message.match(/^!imdb (.+)$/i)) {
 			var term = matches[1].trim();
+			try {
+				term = encodeURIComponent(term);
+			} catch(e) {
+				return;
+			}
 
 			var req = this.http.request('http://www.omdbapi.com/?t='+term, function(res) {
 				res.setEncoding('utf8');
@@ -20,7 +25,12 @@ IMDB.prototype = {
 
 				res.on('end', function(){
 					if (body) {
-						var obj = JSON.parse(body);
+						var obj;
+						try {
+							obj = JSON.parse(body);
+						} catch(e) {
+							return;
+						}
 						if (obj && obj.Title) {
 							irc.client.say(chan, obj.Title + ' | Rating: ' + obj.imdbRating + ' | ' + obj.Plot);
 						}
