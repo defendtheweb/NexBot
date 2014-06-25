@@ -28,7 +28,7 @@ Profile.prototype = {
 						if (body) {
 							var data = body.split(":");
 							// Return the string.
-							var result = "https://www.hackthis.co.uk/user/" + data[0] + " | Rank: " + data[1] + " | Score: " + utils.addCommas(data[2]) + " | Levels: " + data[4] + '/' + data[5];
+							var result = data[0] + " | Rank: " + data[1] + " | Score: " + utils.addCommas(data[2]) + " | Levels: " + data[4] + '/' + data[5] + " | Profile: https://www.hackthis.co.uk/user/" + data[0];
 							irc.client.say(chan, result);
 						} else {
 							irc.client.say(chan, "User not found");
