@@ -6,7 +6,7 @@ var Profile = function() {
 
 Profile.prototype = {
 	https: require('https'),
-	api_key: global.config.get('hackthis_api'),
+	api_key: global.config.get('wechall_api'),
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 
