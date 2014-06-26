@@ -69,7 +69,7 @@ describe('Module Imgur', function () {
             }, 10);
         });
 
-        it.skip('should not display NSFW images if includeNSFW is false', function(done) {
+        it('should not display NSFW images if includeNSFW is false', function(done) {
             var imgurReq = nock('https://api.imgur.com')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
@@ -101,7 +101,7 @@ describe('Module Imgur', function () {
             }, 10);
         });
 
-        it.skip('should handle non-200 responses', function(done) {
+        it('should handle non-200 responses', function(done) {
             var imgurReq = nock('https://api.imgur.com')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
