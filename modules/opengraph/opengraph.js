@@ -4,7 +4,7 @@ var opengraph = function() {
 
 opengraph.prototype = {
     og: require('open-graph'),
-    regex: new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[$
+    regex: new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/),
     handle: function(from, chan, message) {
         var irc = global.irc;
 
@@ -28,6 +28,10 @@ opengraph.prototype = {
                 }
 
                 if (meta.site_name) {
+                    if (meta.site_name == 'YouTube') {
+                        return;
+                    }
+                
                     if (result) {
                         result += ' [' + meta.site_name + ']';
                     } else {
