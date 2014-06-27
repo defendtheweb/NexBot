@@ -8,12 +8,8 @@ var assert = require('chai').assert;
 var nock = require('nock'); // nock allows for mocking http(s) requests
 var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
-
 // Import the module to test
-var issues = require('../../modules/issues/issues.js');
-
-// Import the module to test
-var calculator = require("../../modules/calc/calc");
+var calculator = require("../../src/modules/calc/calc");
 
 describe('Module calculator', function () {
 

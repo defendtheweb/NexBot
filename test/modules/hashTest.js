@@ -6,8 +6,7 @@ var nock = require('nock'); // nock allows for mocking http(s) requests
 var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
 // Import the module to test
-var hash = require('../../modules/hash/hash');
-var filterIRCSlashOutput = require('../../lib/utils').filterIRCSlashOutput;
+var hash = require('../../src/modules/hash/hash');
 
 describe('Module Hash', function () {
 

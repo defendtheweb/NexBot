@@ -9,7 +9,7 @@ var nock = require('nock'); // nock allows for mocking http(s) requests
 var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
 // Import the module to test
-var example = require("../../modules/example/example");
+var example = require("../../src/modules/example/example");
 
 // Each module should be encapsulated in a describe call, making
 // each module a seperate "test-suite", or group of tests that
