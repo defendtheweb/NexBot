@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - 0.10
+script: "npm run-script travis"
 notifications:
     email: false
     irc:
