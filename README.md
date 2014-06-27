@@ -34,9 +34,15 @@ mysql -u <user> -p <database> < db.sql
 
 2. Rename the data/example.nicks.js file to nicks.js.
 
+## Running tests
+```bash
+npm test
+```
+This will run the test suite, jsHint all code in src/ and test/ and generate a test coverage report. The test coverage report can be found in the /reports folder.
+
 ## Usage
 
-Start the bot by running `node main.js`. 
+Start the bot by running `node src/main.js`. 
 Once the bot is running you can use the following commands:
 
 * ```!last.fm``` Output the last listened track from last.fm
