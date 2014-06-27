@@ -1,41 +1,87 @@
 module.exports = function(grunt) {
 	"use strict";
 
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-mocha-test');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-blanket');
+	grunt.loadNpmTasks('grunt-coveralls');
+
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+		clean: {
+			coverage: {
+				src: ['coverage/']
+			},
+			reports: {
+				src: ['reports/']
+			}
+		},
+
+		copy: {
+			coverage: {
+				src: ['test/**', 'data/**'],
+				dest: 'coverage/'
+			}
+		},
+
+		blanket: {
+			coverage: {
+				src: ['src/'],
+        		dest: 'coverage/src/'
+			}
+		},
+
 		mochaTest: {
-			test: {
+			'spec': {
 				options: {
 					reporter: 'spec'
 				},
-				src: [
-					"test/**/*Test.js"
-				]
+				src: ["coverage/test/**/*Test.js"]
+			},
+			'html-cov': {
+				options: {
+					reporter: 'html-cov',
+					quiet: true,
+					captureFile: 'reports/coverage.html'
+				},
+				src: ["coverage/test/**/*Test.js"]
+			},
+			'mocha-lcov-reporter': {
+				options: {
+					reporter: 'mocha-lcov-reporter',
+					quiet: true,
+					captureFile: 'reports/lcov.info'
+				},
+				src: ["coverage/test/**/*Test.js"]
+			},
+		},
+
+		coveralls: {
+			options: {
+				// Don't fail a build if coveralls fails
+				force: true
+			},
+				all: {
+				src: 'reports/lcov.info'
 			}
 		},
+
 		jshint: {
 			src: [
 				// Files to hint
-				"main.js",
-				"loader.js",
-				"Gruntfile.js",
-				"test/**/*.js",
-				"lib/**/*.js",
-				"modules/**/*.js"
+				"src/**/*.js",
+				"test/**/*.js"
 			],
 			options: {
 				jshintrc: '.jshintrc'
 			}
-		}
+		},
+
+
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-mocha-test');
 
-    grunt.registerTask('test', 'Run NexBot test suite', function() {
-        var tasks = ['mochaTest', 'jshint'];
-        grunt.task.run(tasks);
-    });
-
-    grunt.registerTask('default', ['test']);
+	grunt.registerTask('default', ['jshint', 'clean', 'blanket', 'copy', 'mochaTest']);
+	grunt.registerTask('travis', ['default', 'coveralls']);
 };

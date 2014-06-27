@@ -27,24 +27,30 @@
     "node": ">=0.6"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt",
+    "travis": "grunt travis"
   },
   "devDependencies": {
     "chai": "*",
     "grunt": "0.4.x",
+    "grunt-blanket": "0.0.8",
     "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-jshint": "0.9.x",
+    "grunt-coveralls": "^0.3.0",
     "grunt-mocha-test": "0.9.x",
+    "mocha-lcov-reporter": "0.0.1",
     "nock": "^0.36.2",
     "sinon": "^1.10.2"
   },
   "dependencies": {
-    "mathjs": "0.18.x",
-    "mysql": "2.1.x",
+    "bars": "https://github.com/jstrace/bars/tarball/master",
+    "bitly": "1.2.x",
     "irc": "0.3.x",
     "lastfm": "0.9.x",
-    "bitly": "1.2.x",
-    "bars": "https://github.com/jstrace/bars/tarball/master"
+    "mathjs": "0.18.x",
+    "mysql": "2.1.x"
   },
   "readme": "",
   "readmeFilename": "README.md"

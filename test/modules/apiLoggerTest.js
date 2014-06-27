@@ -6,7 +6,7 @@ var nock = require('nock'); // nock allows for mocking http(s) requests
 var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
 // Import the module to test
-var apiLogger = require('../../modules/apiLogger/apiLogger');
+var apiLogger = require('../../src/modules/apiLogger/apiLogger');
 
 describe('Module APILogger', function () {
 

@@ -5,7 +5,7 @@
 var assert = require('chai').assert;
 
 // Import our module we want to test
-var utils = require("../../lib/utils.js");
+var utils = require("../../src/lib/utils.js");
 
 describe('Lib utils', function () {
     describe('#addCommas()', function () {
