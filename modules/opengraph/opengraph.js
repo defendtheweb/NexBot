@@ -28,7 +28,7 @@ opengraph.prototype = {
                 }
 
                 if (meta.site_name) {
-                    if (meta.site_name === 'YouTube') {
+                    if (meta.site_name == 'YouTube') {
                         return;
                     }
                 
