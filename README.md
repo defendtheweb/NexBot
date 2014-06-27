@@ -4,6 +4,7 @@ NexBot
 Node.js IRC bot
 
 [![Build Status](https://travis-ci.org/HackThis/NexBot.png?branch=master)](https://travis-ci.org/HackThis/NexBot)
+[![Coverage Status](https://coveralls.io/repos/HackThis/NexBot/badge.png?branch=master)](https://coveralls.io/r/HackThis/NexBot?branch=master)
 
 ## Install and Setup
 
