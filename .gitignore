@@ -4,3 +4,7 @@ node_modules/
 
 ## WebStorm files
 .idea/
+
+# coverage stuff
+/coverage
+/reports
