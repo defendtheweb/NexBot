@@ -27,7 +27,7 @@ describe('Module Define', function () {
             }
         };
 
-        define = require('../../modules/define/define');
+        define = require('../../src/modules/define/define');
     });
 
     after(function () {

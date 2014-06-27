@@ -12,7 +12,7 @@ var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 var fs = require("fs");
 
 // Import the module to test
-var help = require("../../modules/help/help");
+var help = require("../../src/modules/help/help");
 
 describe('Module Help', function () {
 

@@ -9,7 +9,7 @@ var nock = require('nock'); // nock allows for mocking http(s) requests
 var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
 // Import the module to test
-var imgur = require("../../modules/imgur/imgur");
+var imgur = require("../../src/modules/imgur/imgur");
 
 describe('Module Imgur', function () {
 

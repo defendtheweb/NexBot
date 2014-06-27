@@ -5,7 +5,7 @@ var assert = require('chai').assert;
 var nock = require('nock'); // nock allows for mocking http(s) requests
 var sinon = require('sinon'); // SinonJS creates stubs/mocks/spies on js objects
 
-var greetingModulePath = '../../modules/greeting/greeting';
+var greetingModulePath = '../../src/modules/greeting/greeting';
 
 describe('Module Greeting', function () {
 
