@@ -59,7 +59,8 @@ module.exports = function(grunt) {
 
 		coveralls: {
 			options: {
-				//force: true
+				// Don't fail a build if coveralls fails
+				force: true
 			},
 				all: {
 				src: 'reports/lcov.info'
