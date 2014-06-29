@@ -26,6 +26,10 @@ Profile.prototype = {
 
 					res.on('end', function(){
 						if (body) {
+							if (body === 0) {
+								irc.client.say(chan, "User not found");
+								return;
+							}
 							var data = body.split(":");
 							// Return the string.
 							var result = data[0] + " | Rank: " + data[1] + " | Score: " + utils.addCommas(data[2]) + " | Levels: " + data[4] + '/' + data[5] + " | Profile: https://www.hackthis.co.uk/user/" + data[0];
