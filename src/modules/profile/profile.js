@@ -26,7 +26,7 @@ Profile.prototype = {
 
 					res.on('end', function(){
 						if (body) {
-							if (body === 0) {
+							if (body === '0') {
 								irc.client.say(chan, "User not found");
 								return;
 							}
