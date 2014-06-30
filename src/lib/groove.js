@@ -34,7 +34,7 @@ Groove.prototype._doRequest = function(request_query, cb) {
 			try {
 				result = JSON.parse(urldata);
 			} catch (exp) {
-				result = {'status_code': 500, 'status_text': 'JSON Parse Failed'};
+				return cb(exp);
 			}
 			cb(null, result);
 		});
