@@ -1,7 +1,4 @@
 // Make sure jsHint allows the use of Mocha-globals
-/* global describe, it */
-
-// Make sure jsHint allows the use of Mocha-globals
 /* global describe, it, before, after, beforeEach, afterEach */
 
 var assert = require('chai').assert;
@@ -47,7 +44,7 @@ describe('Module Imgur', function () {
             var imgurReq = nock('https://api.imgur.com')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     'data': [{
                         'is_album': false, 
                         'link': 'http://imgur.com/',
@@ -55,7 +52,7 @@ describe('Module Imgur', function () {
                         'ups': 2, 
                         'downs': 3
                     }]
-                }));
+                });
 
 
             imgur.handle('testUser', 'testChannel', '!imgur');
@@ -73,7 +70,7 @@ describe('Module Imgur', function () {
             var imgurReq = nock('https://api.imgur.com')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     'data': [{
                         'is_album': false,
                         'link': 'http://imgur.com/',
@@ -82,7 +79,7 @@ describe('Module Imgur', function () {
                         'ups': 2, 
                         'downs': 3
                     }]
-                }));
+                });
 
             var prevIncludeNSFW = imgur.includeNSFW;
             imgur.includeNSFW = false;

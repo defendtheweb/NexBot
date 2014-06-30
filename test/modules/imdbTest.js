@@ -1,7 +1,4 @@
 // Make sure jsHint allows the use of Mocha-globals
-/* global describe, it */
-
-// Make sure jsHint allows the use of Mocha-globals
 /* global describe, it, before, after, beforeEach, afterEach */
 
 var assert = require('chai').assert;
@@ -45,11 +42,11 @@ describe('Module Imbd', function () {
             var omdbReq = nock('http://www.omdbapi.com')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     Title: "TestMovie",
                     imdbRating: "10.0",
                     Plot: "TestPlot"
-                }));
+                });
 
             imdb.handle('testUser', 'testChannel', '!imdb testMovie');
 

@@ -57,7 +57,7 @@ describe('Module Define', function () {
                     return '/'; // Don't care about the api path
                 })
                 .get('/')
-                .reply(200, '[{"text":"testDef"}]');
+                .reply(200, [{"text":"testDef"}]);
 
             define.handle('testUser', 'testChannel', '!define test');
 
@@ -76,7 +76,7 @@ describe('Module Define', function () {
                     return '/'; // Don't care about the api path
                 })
                 .get('/')
-                .reply(200, '[{"text":"testDef"}, {"text":"Nope"}]');
+                .reply(200, [{"text":"testDef"}, {"text":"Nope"}]);
 
             define.handle('testUser', 'testChannel', '!define test');
 

@@ -7,7 +7,7 @@ var assert = require('chai').assert;
 // Import our module we want to test
 var utils = require("../../src/lib/utils.js");
 
-describe('Lib utils', function () {
+describe('Lib Utils', function () {
     describe('#addCommas()', function () {
         it('Should add commas to a pure number string', function () {
             var number = "123456.7891";

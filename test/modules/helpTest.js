@@ -1,7 +1,4 @@
 // Make sure jsHint allows the use of Mocha-globals
-/* global describe, it */
-
-// Make sure jsHint allows the use of Mocha-globals
 /* global describe, it, before, after, beforeEach, afterEach */
 
 var assert = require('chai').assert;

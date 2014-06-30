@@ -45,13 +45,13 @@ describe('Module Hash', function () {
             var leakdbReq = nock('https://api.leakdb.net')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     found: "true",
                     type: "HASH_TYPE",
                     hashes: [{
                         plaintext: "PLAINTEXT"
                     }]
-                }));
+                });
 
             hash.handle('testUser', 'testChannel', '!hash HASH');
 
@@ -68,9 +68,9 @@ describe('Module Hash', function () {
             var leakdbReq = nock('https://api.leakdb.net')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     found: "false"
-                }));
+                });
 
             hash.handle('testUser', 'testChannel', '!hash HASH');
 
@@ -85,10 +85,10 @@ describe('Module Hash', function () {
             var leakdbReq = nock('https://api.leakdb.net')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     found: "false",
                     type: ["HASHTYPE"]
-                }));
+                });
 
             hash.handle('testUser', 'testChannel', '!hash HASH');
 
@@ -105,10 +105,10 @@ describe('Module Hash', function () {
             var leakdbReq = nock('https://api.leakdb.net')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     found: "false",
                     type: ["HASHTYPE"]
-                }));
+                });
 
             hash.handle('testUser', 'testChannel', '!hash HASHTYPE HASH');
 
@@ -128,11 +128,11 @@ describe('Module Hash', function () {
             var leakdbReq = nock('https://api.leakdb.net')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     found: "true",
                     type: "plaintext",
                     hashes: [{}]
-                }));
+                });
 
             hash.handle('testUser', 'testChannel', '!hash /me abc');
 
@@ -151,11 +151,11 @@ describe('Module Hash', function () {
             var leakdbReq = nock('https://api.leakdb.net')
                 .filteringPath(/.*/, '/') // Don't care for api path
                 .get('/')
-                .reply(200, JSON.stringify({
+                .reply(200, {
                     found: "true",
                     type: "HASHTYPE",
                     hashes: [{plaintext: "/me"}]
-                }));
+                });
 
             hash.handle('testUser', 'testChannel', '!hash HASH');
 
