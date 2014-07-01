@@ -16,7 +16,7 @@ Grooveshark.prototype = {
 		var api = this.api;
 
 		var matches;
-		if (matches = message.match(/^!([\S]*) (.*)$/i)) {
+		if (matches = message.trimRight().match(/^!([\S]*) (.*)$/i)) {
 			if (matches[1] === "groove") {
 				this.api.shorten(matches[2], function(err, response) {
 					if (err) {
@@ -29,7 +29,7 @@ Grooveshark.prototype = {
 					}
 				});
 			}
-		} else if (matches = message.match(/^!([\S]*)$/i)) {
+		} else if (matches = message.trimRight().match(/^!([\S]*)$/i)) {
 			if (matches[1] === "groove") {
 				if (global.nicks.data[from] && global.nicks.data[from]['lastfm']) {
 					//Requires lastfm module to be loaded
