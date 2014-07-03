@@ -19,7 +19,7 @@ Excuses.prototype = {
 					});
 
 					res.on('end', function(){
-						if (body != 0) {
+						if (body !== 0) {
 							var obj = JSON.parse(body);
 							if (obj && obj.query && obj.query.count === 1) {
 								irc.client.say(chan, obj.query.results.results.a.content);
