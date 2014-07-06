@@ -17,7 +17,7 @@ Profile.prototype = {
 				user = user.trim();
 				var self = this;
 
-				var req = this.https.request('https://www.hackthis.co.uk/wechall/userscore.php?authkey='+this.api_key+'&username='+user, function(res) {
+				var req = this.https.request('https://www.hackthis.co.uk/wechall/userscore.php?format=json&authkey='+this.api_key+'&username='+user, function(res) {
 					res.setEncoding('utf8');
 					var body = '';
 					res.on('data', function(chunk) {
@@ -30,9 +30,9 @@ Profile.prototype = {
 								irc.client.say(chan, "User not found");
 								return;
 							}
-							var data = body.split(":");
+							var data = JSON.parse(body);
 							// Return the string.
-							var result = data[0] + " | Rank: " + data[1] + " | Score: " + utils.addCommas(data[2]) + " | Levels: " + data[4] + '/' + data[5] + " | Profile: https://www.hackthis.co.uk/user/" + data[0];
+							var result = data.username + " | Rank: " + data.rank + " | Score: " + utils.addCommas(data.total_score) + " | Levels: " + data.challs_solved + '/' + data.chall_count + " | Profile: https://www.hackthis.co.uk/user/" + data.username;
 							irc.client.say(chan, result);
 						} else {
 							irc.client.say(chan, "User not found");
