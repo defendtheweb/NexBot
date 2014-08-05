@@ -42,7 +42,7 @@ Feed.prototype = {
                     case "forum_post":
                         result = "\x02\x0303[Forum]\x03\x0F New post in " + event.title + " by " + event.username + " - https://www.hackthis.co.uk"+ event.uri;
                         self.latestForumURI = "https://www.hackthis.co.uk" + event.uri;
-                        self.latestForum = "\x02\x0303[Forum]\x03\x0F" + event.title + " by " + event.username + " - https://www.hackthis.co.uk"+ event.uri;
+                        self.latestForum = "\x02\x0303[Forum]\x03\x0F " + event.title + " by " + event.username + " - https://www.hackthis.co.uk"+ event.uri;
                         break;
                     case "comment":
                         result = "\x02\x0303[Comment]\x03\x0F " + event.username + " commented on " + event.title + " - https://www.hackthis.co.uk" + event.uri; break;
@@ -55,7 +55,11 @@ Feed.prototype = {
                         irc.client.say(channels[i], result);
                     }
                 }
-            }
+
+		if (event.type == "level" && (event.title == 'Real 6' || event.title == 'Crypt 8' || event.title == 'Crypt 7')) {
+			irc.client.say('#hackthis', result);
+	        }
+	    }
         });
     },
     handle: function(from, chan, message) {
