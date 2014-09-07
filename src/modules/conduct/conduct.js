@@ -1,5 +1,5 @@
 var Conduct = function() {
-	var codes = ['answers to all levels will be my own work, unless otherwise instructed.',
+	this.codes = ['answers to all levels will be my own work, unless otherwise instructed.',
 				 'I will not share answers to any level.',
 				 'I will not participate in, condone or encourage unlawful activity, including any breach of copyright, defamation, or contempt of court.',
 				 'As the HackThis!! community’s first language is English, I will always post contributions in English to enable all to understand',
@@ -12,7 +12,7 @@ Conduct.prototype = {
 		var irc = global.irc;
 
 		var matches;
-		if (matches = message.match(/^!conduct (\d+)$/i)) {
+		if (matches = message.match(/^!conduct|rule (\d+)$/i)) {
 			var index = parseInt(matches[1]) - 1;
 			if (index < this.codes.length) {
 				var msg = this.codes[index];
