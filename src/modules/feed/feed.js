@@ -17,7 +17,8 @@ var Feed = function() {
 Feed.prototype = {
     setupSocket: function() {
         var self = this,
-            socketio = require('socket.io-client');
+            socketio = require('socket.io-client'),
+            irc = global.irc;
 
         this.socket = socketio.connect('wss://hackthis.co.uk:8080/', { forceNew: true, timeout: 1000, secure: true, debug: true });
 
