@@ -28,24 +28,29 @@ Feed.prototype = {
 
             if (event && event.type) {
 
-                if (event.type == 'level' && event.title[0] === 'M') {
+                if (event.type === 'level' && event.title[0] === 'M') {
                     return;
                 }
 
+                var result;
                 switch(event.type) {
                     case "join":
-                        result = "\x02\x0303[User]\x03\x0F " + event.username + " has just joined"; break;
+                        result = "\x02\x0303[User]\x03\x0F " + event.username + " has just joined";
+                        break;
                     case "level":
-                        result = "\x02\x0303[Level]\x03\x0F " + event.username + " completed " + event.title; break;
+                        result = "\x02\x0303[Level]\x03\x0F " + event.username + " completed " + event.title;
+                        break;
                     case "article":
-                        result = "\x02\x0303[Article]\x03\x0F " + event.title + " - https://www.hackthis.co.uk" + event.uri; break;
+                        result = "\x02\x0303[Article]\x03\x0F " + event.title + " - https://www.hackthis.co.uk" + event.uri;
+                        break;
                     case "forum_post":
                         result = "\x02\x0303[Forum]\x03\x0F New post in " + event.title + " by " + event.username + " - https://www.hackthis.co.uk"+ event.uri;
                         self.latestForumURI = "https://www.hackthis.co.uk" + event.uri;
                         self.latestForum = "\x02\x0303[Forum]\x03\x0F" + event.title + " by " + event.username + " - https://www.hackthis.co.uk"+ event.uri;
                         break;
                     case "comment":
-                        result = "\x02\x0303[Comment]\x03\x0F " + event.username + " commented on " + event.title + " - https://www.hackthis.co.uk" + event.uri; break;
+                        result = "\x02\x0303[Comment]\x03\x0F " + event.username + " commented on " + event.title + " - https://www.hackthis.co.uk" + event.uri;
+                        break;
                 }
 
                 var channels = self.events[event.type];

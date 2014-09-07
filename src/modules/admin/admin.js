@@ -12,6 +12,7 @@ Admin.prototype = {
             /* 2 part */
             var matches;
             if (matches = message.trimRight().match(/^([\S]*) (.*)$/i)) {
+                console.log(matches);
                 if (matches[1] === 'join') {
                     irc.client.join(matches[2], function() {
                         irc.client.say(matches[2], "Hello " + matches[2]);
