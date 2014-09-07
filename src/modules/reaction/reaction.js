@@ -7,7 +7,6 @@ Reaction.prototype = {
     handle: function(from, chan, message) {
         var self = this,
             matches = message.match(/^#(.+)/i);
-            irc = global.irc;
 
         if (matches) {
             console.log('Reaction: ' + matches[1]);
@@ -18,7 +17,7 @@ Reaction.prototype = {
                     return Math.round(Math.random()) - 0.5;
                 }).slice(0,1)).attr('src');
 
-                irc.client.say(chan, src);
+                global.irc.client.say(chan, src);
             });
 
         }
