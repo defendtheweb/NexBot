@@ -12,8 +12,9 @@ Conduct.prototype = {
 		var irc = global.irc;
 
 		var matches;
-		if (matches = message.match(/^!conduct|rule (\d+)$/i)) {
+		if (matches = message.match(/^!(?:conduct|rule) (\d+)$/i)) {
 			var index = parseInt(matches[1]) - 1;
+			console.log(index);
 			if (index < this.codes.length) {
 				var msg = this.codes[index];
 
