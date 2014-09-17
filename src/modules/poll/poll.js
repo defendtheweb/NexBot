@@ -36,7 +36,7 @@ Poll.prototype = {
     },
     finish: function(user, chan) {
         // check current user started poll
-        if (!this.active[chan] || this.active[chan].author !== user) {
+	if (!this.active[chan] || (this.active[chan].author !== user && global.config.get('admin').indexOf(user) < 0)) {
             return;
         }
 
