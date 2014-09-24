@@ -20,7 +20,7 @@ Feed.prototype = {
             socketio = require('socket.io-client'),
             irc = global.irc;
 
-        this.socket = socketio.connect('wss://hackthis.co.uk:8080/', { forceNew: true, timeout: 1000, secure: true, debug: true });
+        this.socket = socketio.connect('wss://www.hackthis.co.uk:8080/', { forceNew: true, timeout: 1000, secure: true, debug: true });
 
         this.socket.on('feed', function (event) {
             if (event instanceof Array) {
