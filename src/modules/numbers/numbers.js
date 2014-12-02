@@ -4,7 +4,7 @@ var Numbers = function() {
 
 Numbers.prototype = {
 	http: require('http'),
-	url: "http://http://numbersapi.com/",
+	url: "http://numbersapi.com/",
 	handle: function(from, chan, message) {
 		var irc = global.irc;
 
