@@ -4,11 +4,11 @@ global.irc = irc;
 
 var Loader = require('./loader.js');
 var config = new Loader();
-config.load('../data/config.js');
+config.load(__dirname + '/../data/config.js');
 global.config = config;
 
 var nicks = new Loader();
-nicks.load('../data/nicks.js');
+nicks.load(__dirname + '/../data/nicks.js');
 global.nicks = nicks;
 
 var fs = require('fs');
